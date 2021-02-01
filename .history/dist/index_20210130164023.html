@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset=utf-8>
+  <meta http-equiv=X-UA-Compatible content="IE=edge">
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <link rel=icon href=http://floooplife.com/favicon.ico>
+  <title>Flooop App</title>
+  <link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css>
+  <script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js></script>
+  <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js></script>
+  <script src=https://apis.google.com/js/api.js></script>
+  <script>window.fbAsyncInit = function () {
+      FB.init({
+        appId: '739382543594363',
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: 'v9.0'
+      });
+    };</script>
+  <script async defer crossorigin=anonymous src=https://connect.facebook.net/en_US/sdk.js></script>
+  <script>window.twttr = (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function (f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));</script>
+  <link href=http://floooplife.com/css/app~21833f8f.780d0aee.css rel=preload as=style>
+  <link href=http://floooplife.com/css/app~4695c423.50a24794.css rel=preload as=style>
+  <link href=http://floooplife.com/css/app~748942c6.8d231154.css rel=preload as=style>
+  <link href=http://floooplife.com/css/app~bb7ee820.6d7d425d.css rel=preload as=style>
+  <link href=http://floooplife.com/css/app~e346c0ac.767fecaf.css rel=preload as=style>
+  <link href=http://floooplife.com/css/app~ff867824.7880abe3.css rel=preload as=style>
+  <link href=http://floooplife.com/css/chunk-vendors~1ee3a9bf.776d6e17.css rel=preload as=style>
+  <link href=http://floooplife.com/css/chunk-vendors~253ae210.4e22b809.css rel=preload as=style>
+  <link href=http://floooplife.com/css/chunk-vendors~cfbf0a2e.02131c75.css rel=preload as=style>
+  <link href=http://floooplife.com/js/app~21833f8f.8d38b2c4.js rel=preload as=script>
+  <link href=http://floooplife.com/js/app~4695c423.28200745.js rel=preload as=script>
+  <link href=http://floooplife.com/js/app~5a11b65b.984411b1.js rel=preload as=script>
+  <link href=http://floooplife.com/js/app~748942c6.61afe4e9.js rel=preload as=script>
+  <link href=http://floooplife.com/js/app~bb7ee820.851ff4b7.js rel=preload as=script>
+  <link href=http://floooplife.com/js/app~e346c0ac.7c7cb39b.js rel=preload as=script>
+  <link href=http://floooplife.com/js/app~ff867824.425b0231.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~0a56fd24.29c3f240.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~15f0789d.0ac021b8.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~1ee3a9bf.5edddd5e.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~253ae210.968f49ee.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~2a42e354.95f64f2a.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~399b027d.a3373da2.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~4dbb7353.eba6997e.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~56e1be11.6b76cbad.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~5765b494.aa2b5741.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~5bb1f863.3f049965.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~6216c3af.1e0dc6bc.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~70205952.52eba39b.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~72f93981.b6fc63a0.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~7362b79c.86998623.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~7db804d5.a0cde782.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~8eeb4602.d193cb6b.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~a0c0c151.d9af1d16.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~ab7a2172.ff308ec1.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~c8728516.767f6e2b.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~cc99a214.0d242913.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~cfbf0a2e.2a138231.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~d2305125.fa2e988b.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~db300d2f.810a5410.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~e258e298.6919f86d.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~f9ca8911.9523b631.js rel=preload as=script>
+  <link href=http://floooplife.com/js/chunk-vendors~fdc6512a.aeb648d8.js rel=preload as=script>
+  <link href=http://floooplife.com/css/chunk-vendors~253ae210.4e22b809.css rel=stylesheet>
+  <link href=http://floooplife.com/css/chunk-vendors~1ee3a9bf.776d6e17.css rel=stylesheet>
+  <link href=http://floooplife.com/css/chunk-vendors~cfbf0a2e.02131c75.css rel=stylesheet>
+  <link href=http://floooplife.com/css/app~748942c6.8d231154.css rel=stylesheet>
+  <link href=http://floooplife.com/css/app~4695c423.50a24794.css rel=stylesheet>
+  <link href=http://floooplife.com/css/app~bb7ee820.6d7d425d.css rel=stylesheet>
+  <link href=http://floooplife.com/css/app~21833f8f.780d0aee.css rel=stylesheet>
+  <link href=http://floooplife.com/css/app~e346c0ac.767fecaf.css rel=stylesheet>
+  <link href=http://floooplife.com/css/app~ff867824.7880abe3.css rel=stylesheet>
+</head>
+
+<body><noscript><strong>We're sorry but vue-node-crud doesn't work properly without JavaScript enabled. Please enable it
+      to continue.</strong></noscript>
+  <div id=app></div>
+  <script src=http://floooplife.com/js/chunk-vendors~253ae210.968f49ee.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~2a42e354.95f64f2a.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~5bb1f863.3f049965.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~a0c0c151.d9af1d16.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~1ee3a9bf.5edddd5e.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~5765b494.aa2b5741.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~70205952.52eba39b.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~72f93981.b6fc63a0.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~db300d2f.810a5410.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~6216c3af.1e0dc6bc.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~56e1be11.6b76cbad.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~399b027d.a3373da2.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~e258e298.6919f86d.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~8eeb4602.d193cb6b.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~7db804d5.a0cde782.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~15f0789d.0ac021b8.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~cc99a214.0d242913.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~0a56fd24.29c3f240.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~f9ca8911.9523b631.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~c8728516.767f6e2b.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~7362b79c.86998623.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~ab7a2172.ff308ec1.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~cfbf0a2e.2a138231.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~fdc6512a.aeb648d8.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~4dbb7353.eba6997e.js></script>
+  <script src=http://floooplife.com/js/chunk-vendors~d2305125.fa2e988b.js></script>
+  <script src=http://floooplife.com/js/app~748942c6.61afe4e9.js></script>
+  <script src=http://floooplife.com/js/app~4695c423.28200745.js></script>
+  <script src=http://floooplife.com/js/app~bb7ee820.851ff4b7.js></script>
+  <script src=http://floooplife.com/js/app~21833f8f.8d38b2c4.js></script>
+  <script src=http://floooplife.com/js/app~5a11b65b.984411b1.js></script>
+  <script src=http://floooplife.com/js/app~e346c0ac.7c7cb39b.js></script>
+  <script src=http://floooplife.com/js/app~ff867824.425b0231.js></script>
+</body>
+
+</html>

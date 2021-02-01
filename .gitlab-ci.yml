@@ -1,0 +1,15 @@
+# This file is a template, and might need editing before it works on your project.
+# Full project: https://gitlab.com/pages/plain-html
+pages:
+ image: node:latest
+ stage: deploy
+ script:
+  - npm install --progress=false
+  - npm run build
+  - mv public public-vue # GitLab Pages hooks on the public folder
+  - mv dist public # rename the dist folder (result of npm run build)
+ artifacts:
+  paths:
+  - public
+ only:
+  - master
