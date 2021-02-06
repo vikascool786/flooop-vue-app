@@ -1,8 +1,8 @@
 import axios from 'axios';
 // const API_URL = 'https://answebtechnologies.in/flooopadmin/api/';
 // const API_URL = 'http://sh009.hostgator.tempwebhost.net/~a1610nqz/flooopadmin/api/';
-const API_URL = 'http://floooplife.com/flooopadmin/api/';
-// const API_URL = 'http://localhost/flooopadmin/api/';
+// const API_URL = 'http://floooplife.com/flooopadmin/api/';
+const API_URL = 'http://flooopadmin.local/api/';
 
 class EventService {
  
@@ -20,6 +20,25 @@ class EventService {
         config: { headers: { "Content-Type": "multipart/form-data" } },
       });
   }
+
+    /**
+     * Get user settings API
+     * @returns {*}
+     */
+    getUserSetting() {
+        let loginUser = JSON.parse(localStorage.getItem('user'));
+        let form = new FormData();
+        if (loginUser != null) {
+            form.append("jwt", loginUser.jwt);
+        }
+        return axios({
+            method: "post",
+            url: API_URL + 'user/setting.php',
+            data: form,
+            config: { headers: { "Content-Type": "multipart/form-data" } },
+        });
+    }
+
   getCatEvents(page,cid) {
     let loginUser = JSON.parse(localStorage.getItem('user'));
     var form = new FormData();

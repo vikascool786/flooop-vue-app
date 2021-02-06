@@ -70,6 +70,7 @@
               class="fas fa-plus"
             ></i>
           </div>
+
         </div>
 
         <br />
@@ -664,7 +665,6 @@
         >
       </div>
     </div>
-
     <div
       v-for="(event, index3) in events_host"
       :key="index3"
@@ -826,6 +826,17 @@
         </div>
       </div>
     </div>
+
+    <div class="row mt-10 zoom-setting">
+      <div class="col-lg-12 col-md-12 col-12">
+        <h4>Zoom Setting</h4>
+        <button v-if="!zoomConfig.connected" @click="redirectToZoom()" class="btn btn-outline-primary">Connect to Zoom</button>
+        <div v-else>
+          <label class="text-success">Connected</label>
+        </div>
+      </div>
+    </div>
+
     <b-modal :active.sync="isComponentModalActive" has-modal-card>
       <form action="" @submit="submitInvite($event)">
         <div class="modal-card" style="width: auto">
@@ -921,6 +932,7 @@ export default {
       showEventStart: true,
       events_host: [],
       user: [],
+      zoomConfig: [],
       isComponentModalActive: false,
       isAttendeesModalActive: false,
       email: "",
@@ -1049,6 +1061,33 @@ export default {
         },
       });
     },
+    /**
+     * Get the user settings
+     */
+    getSetting() {
+      EventService.getUserSetting().then(
+              (response) => {
+                this.zoomConfig = response.data.zoom;
+              },
+              (error) => {
+                if (error.response.data.message.includes("expire")) {
+                  localStorage.removeItem("user");
+                }
+                this.content = (error.response && error.response.data && error.response.data.message) ||
+                        error.message || error.toString();
+              }
+      );
+    },
+    redirectToZoom(){
+      this.setCookie('__ref_id', this.zoomConfig.__ref_id, 1);
+      window.location=this.zoomConfig.authorisedUrl;
+    },
+    setCookie(cName, cValue, exDays) {
+      let d = new Date();
+      d.setTime(d.getTime() + (exDays * 24 * 60 * 60 * 1000));
+      let expires = "expires=" + d.toUTCString();
+      document.cookie = cName + "=" + cValue + ";" + expires + ";path=/";
+    },
     getEventStatus(page2) {
       let page = "AccountEventAttendee";
       EventService.getEvents(page).then(
@@ -1095,6 +1134,19 @@ export default {
       this.$router.push("/event-detail/" + id);
     },
   },
+  created() {
+    if (this.$route.query.zoom_status && this.$route.query.zoom_status == 'success'){
+      Vue.$toast.success("Connected to Zoom Successfully.", {
+        duration: 2000,
+      });
+    }
+
+    if (this.$route.query.zoom_status && this.$route.query.zoom_status == 'error'){
+      Vue.$toast.error("Error on connecting to zoom", {
+        duration: 2000,
+      });
+    }
+  },
   mounted() {
     let loginUser = JSON.parse(localStorage.getItem("user"));
     let userId = loginUser.id;
@@ -1120,6 +1172,7 @@ export default {
       }
     );
     this.getEventStatus("AccountMyEventsUpcoming");
+    this.getSetting();
 
     //favourite Events
     let page = "events";
@@ -1195,4 +1248,18 @@ span.active {
   font-weight: 500;
   background-color: white;
 }
+
+  .zoom-setting{
+    margin-top:35px;
+  }
+  .zoom-setting h4{
+    font-size: 1.2em;
+    font-weight: 500;
+    color: rgb(146, 146, 146);
+    letter-spacing: 1.5px;
+    line-height: 20px;
+  }
+  .zoom-setting button{
+    margin-top: 15px;
+  }
 </style>
