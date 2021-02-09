@@ -55,37 +55,43 @@
             </div>
         </div>
         <br />
+        <br />
         <div class="row">
-          <div class="col-md-4 col-12 live-and-upcoming-hr">
+          <div style="flex: 1 0 33.333333%;max-width: 38.333333%;" class="col-lg-4 col-md-4 col-4">
             <hr style="background-color: rgb(247 114 57); height: 0.01em;" />
           </div>
-          <div style="text:align:center;" class="col-md-4 col-12 live-and-upcoming">
+          <div style="text:align:center;" class="col-lg-4 col-md-4 col-4">
             <span
               class="home-sub-heading"
             >LIVE AND UPCOMING</span>
           </div>
-          <div class="col-md-4 col-12 live-and-upcoming-hr">
+          <div style="flex: 1 0 33.333333%;max-width: 38.333333%;" class="col-lg-4 col-md-4 col-4">
             <hr style="background-color: rgb(247 114 57);    height: 0.01em;" />
           </div>
         </div>
         <br />
+        <br />
+        
         <EventsComponent page="HomeLiveUpcoming"> </EventsComponent>
 
         <br />
+        <br />
         <div class="row">
-          <div style="flex: 1 0 33.333333%;max-width: 38.333333%;" class="col-lg-4 col-md-4 col-12 live-and-upcoming-hr">
+          <div style="flex: 1 0 33.333333%;max-width: 38.333333%;" class="col-lg-4 col-md-4 col-4">
             <hr style="background-color: #134b86;height:0.01em;" />
           </div>
-          <div class="col-lg-4 col-md-4 col-12">
+          <div class="col-lg-4 col-md-4 col-4">
             <span
               style="color: #134b86;"
               class="home-sub-heading"
             >BROWSE ONLINE EVENTS</span>
           </div>
-          <div style="flex: 1 0 33.333333%;max-width: 38.333333%;" class="col-lg-4 col-md-4 col-12 live-and-upcoming-hr">
+          <div style="flex: 1 0 33.333333%;max-width: 38.333333%;" class="col-lg-4 col-md-4 col-4">
             <hr style="background-color:#134b86;height:0.01em;" />
           </div>
         </div>
+        <br />
+        <br />
         <br />
         <div class="row">
           <div class="col-lg-6 col-md-6 col-12" style="height: 300px;" 
@@ -281,10 +287,7 @@ export default {
   box-shadow: 0 6px 10px 0 #929292;
 }
 .home-sub-heading{
-  color: rgb(247 114 57);line-height: 2em;    font-size: 1.6vw;font-weight: 600;letter-spacing:1.5px;
-}
-.live-and-upcoming-hr{
-  flex: 1 0 33.333333%;max-width: 38.333333%;
+  color: rgb(247 114 57);line-height: 3.5em;    font-size: 1.6vw;font-weight: 600;letter-spacing:1.5px;
 }
 @media (max-width: 769px) {
   .home-sub-heading {
@@ -292,13 +295,6 @@ export default {
     font-size: 3.6vw;
     font-weight: 600;
     letter-spacing: 1.5px;
-}
-.live-and-upcoming{
-  padding-right: 0 !important;
-  padding-left: 0 !important;
-}
-.live-and-upcoming-hr{
-  flex: 1 0 33.333333%;max-width: 100% !important;
 }
 }
 </style>

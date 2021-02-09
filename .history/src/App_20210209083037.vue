@@ -132,7 +132,7 @@
       <br />
       <br />
       <br v-if="window.width < 600" />
-      <div class="content-margin-top">
+      <div style="margin-top:50px;">
       <router-view class="view"></router-view>
       </div>
       <!-- copyright -->
@@ -542,9 +542,6 @@ a:hover .head {
 @import "./assets/css/style.css";
 @import "./assets/css/fontawesome-all.css";
 
- .content-margin-top{
-    margin-top: 50px;
-  }
 @media (max-width: 769px) {
   .navbar-nav > li.nav-item.pl-3.pr-3 {
     margin-bottom: 18px;
@@ -557,12 +554,6 @@ a:hover .head {
   .margin-left-right{
     margin-right: 0 !important;
     margin-left: 0 !important;
-  }
-  .content-margin-top{
-    margin-top: 10px;
-  }
-  .navbar-toggler:hover, .navbar-toggler:focus{
-    outline: none;
   }
 }
 </style>

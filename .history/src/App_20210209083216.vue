@@ -561,8 +561,5 @@ a:hover .head {
   .content-margin-top{
     margin-top: 10px;
   }
-  .navbar-toggler:hover, .navbar-toggler:focus{
-    outline: none;
-  }
 }
 </style>

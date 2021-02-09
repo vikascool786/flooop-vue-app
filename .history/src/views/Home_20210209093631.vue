@@ -281,7 +281,7 @@ export default {
   box-shadow: 0 6px 10px 0 #929292;
 }
 .home-sub-heading{
-  color: rgb(247 114 57);line-height: 2em;    font-size: 1.6vw;font-weight: 600;letter-spacing:1.5px;
+  color: rgb(247 114 57);line-height: 3.5em;    font-size: 1.6vw;font-weight: 600;letter-spacing:1.5px;
 }
 .live-and-upcoming-hr{
   flex: 1 0 33.333333%;max-width: 38.333333%;

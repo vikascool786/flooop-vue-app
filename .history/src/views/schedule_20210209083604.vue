@@ -12,28 +12,33 @@
             :src="category.src"
             style="width: 100%; object-fit: cover"
           /><br />
-          <span class="category-title">{{ category.cat_title }}</span>
+          <span
+            class="category-title"
+            >{{ category.cat_title }}</span
+          >
         </div>
       </div>
     </div>
-    <div class="row schedule-category-mobile" style="overflow: hidden">
-      <VueSlickCarousel v-bind="categorySetting">
-        <div
-          v-for="(category, index) in categories"
-          :key="index"
-          :id="'category_' + index"
-          @click="getEvents('Category', category.id)"
-        >
-          <img :src="category.src" /><br />
-          <span class="category-title">{{ category.cat_title }}</span>
-        </div>
-      </VueSlickCarousel>
+    <div class="row schedule-category-mobile" style="overflow:hidden;">
+     <VueSlickCarousel v-bind="categorySetting">
+            <div 
+              v-for="(category, index) in categories"
+              :key="index"
+              :id="'category_' + index"
+              @click="getEvents('Category', category.id)"
+            >
+            <img
+              :src="category.src"
+              /><br />
+            <span class="">{{ category.cat_title }}</span>
+            </div>
+          </VueSlickCarousel>
     </div>
     <div class="row">
       <div class="col-md-12"><hr /></div>
     </div>
     <div class="row">
-      <div class="col-md-12 dateCard-body" v-if="eventGroups.length > 0">
+      <div class="col-md-12" v-if="eventGroups.length > 0">
         <VueSlickCarousel v-bind="settings">
           <div
             class="date-view-li"
@@ -41,7 +46,7 @@
             :key="index"
             @click="scrollToDate(index)"
             :id="'dateCard_' + index"
-            :class="index == 0 ? 'dateCardWidth active1' : 'dateCardWidth '"
+            :class="index == 0 ? 'active1' : ''"
           >
             <span class="date-view-li1"
               >{{ event.date.split(", ")[0].substring(0, 3) }}
@@ -54,11 +59,7 @@
       </div>
     </div>
     <hr />
-    <span
-      v-for="(event, index) in eventGroups"
-      :key="index"
-      class="schedule-desktop-events"
-    >
+    <span v-for="(event, index) in eventGroups" :key="index" class="schedule-desktop-events">
       <div class="row">
         <div class="col-md-12" :id="'date_' + index">
           <p
@@ -91,7 +92,7 @@
             }}
             {{ eventlist.timezone }}
             <br />
-            {{ eventlist.event_duration }}<br />
+            {{eventlist.event_duration }}<br />
           </p>
         </div>
         <div class="col-sm-3 col-md-2" style="text-align: left">
@@ -146,7 +147,7 @@
               margin-top: 5px;
             "
           >
-            Hosted by<br />
+            Hosted by<br>
             <span style="display: inline-block">
               {{ eventlist.event_cohost }}
             </span>
@@ -197,255 +198,241 @@
         <div class="col-md-12"><hr /></div>
       </div>
     </span>
-    <div class="row schedule-mobile-events">
-      <div
-        v-for="(event, index) in eventGroups"
-        style="padding-top: 22px"
-        class="col-lg-4 col-md-6 col-12"
-        :key="index"
-      >
-      <div class="row">
-        <div class="col-md-12 mb-3" :id="'date_' + index">
-          <p
+      <div class="row schedule-mobile-events">
+    <div
+      v-for="(event, index) in eventGroups"
+      style="padding-top: 22px"
+      class="col-lg-4 col-md-6 col-12"
+      :key="index"
+    >
+      <div class="card" style="width: 100%; height: 98%; text-align:center; margin-bottom:20px;" v-for="(event, index) in event.events"
+        :key="index">
+        <div @click="redirectToDetail(event.id)" class="row event_height">
+          <div
             style="
-              background: #f8bd40;
-              color: rgb(38, 118, 169);
-              margin-top: 30px;
-              padding-left: 10px;
+              cursor: pointer;
+              text-align: center;
+              font-weight: 600;
+              cursor: pointer;
+              color: #929292;
+              letter-spacing: 1.5px;
             "
+            class="col-lg-12 col-md-12 col-12"
           >
-            {{ event.date }}
-          </p>
-        </div>
-      </div>
-        <div
-          class="card"
-          style="
-            width: 100%;
-            height: 98%;
-            text-align: center;
-            margin-bottom: 20px;
-          "
-          v-for="(event, index) in event.events"
-          :key="index"
-        >
-          <div @click="redirectToDetail(event.id)" class="row event_height">
-            <div
-              class="col-lg-12 col-md-12 col-12 card-event-title"
-            >
-              {{ event.event_title }}
-            </div>
+            {{ event.event_title }}
           </div>
-          <img
+        </div>
+        <img
+          @click="redirectToDetail(event.id)"
+          style="width: 100%; border-radius: 10px; height: 140px"
+          :src="event.path"
+        />
+        <div class="card-body">
+          <div
             @click="redirectToDetail(event.id)"
-            style="width: 100%; border-radius: 10px; height: 140px"
-            :src="event.path"
-          />
-          <div class="card-body">
-            <div
-              @click="redirectToDetail(event.id)"
-              style="color: #929292; margin-top: 5px; letter-spacing: 1.5px"
-              class="card-text"
+            style="color: #929292; margin-top: 5px; letter-spacing: 1.5px"
+            class="card-text"
+          >
+            <div>
+              {{ event.event_date }} <br />
+              {{
+                event.event_start === "00:00 " ||
+                event.event_start === "00:00" ||
+                event.event_start === "00:00 AM" ||
+                event.event_start === "00:00 PM"
+                  ? event.event_start
+                  : getStartTime(event.event_start)
+              }}
+              {{ event.timezone }}
+            </div>
+            <div style="padding-top: 12px">{{event.event_cost_label }}</div>
+            <div style="padding-top: 12px">{{event.event_duration }}</div>
+            <div style="padding-top: 12px" v-if="event.event_cohost.length > 0">Hosted by {{event.event_cohost }}</div>
+          </div>
+          <div style="padding-top: 20px" class="btn_event">
+            <button
+              v-if="event.flag_joined == null || event.flag_joined == '0'"
+              id="button"
+              style="
+                width: 40%;
+                border-radius: 15px;
+                letter-spacing: 1.5px;
+                color: #ff8354;
+                border-color: #ff8354;
+                font-weight: 500;
+                background-color: white;
+              "
+              type="button"
+              class="btn btn-outline"
+              @click.stop="joinEvent(event.id)"
             >
-              <div @click="redirectToDetail(event.id)" >
-                {{
-                  event.event_start === "00:00 " ||
-                  event.event_start === "00:00" ||
-                  event.event_start === "00:00 AM" ||
-                  event.event_start === "00:00 PM"
-                    ? event.event_start
-                    : getStartTime(event.event_start)
-                }}
-                {{ event.timezone }}
-              </div>
-              <div style="padding-top: 12px">{{ event.event_cost_label }}</div>
-              <div style="padding-top: 12px">{{ event.event_duration }}</div>
-              <div
-                style="padding-top: 12px"
-                v-if="event.event_cohost.length > 0"
-              >
-                Hosted by {{ event.event_cohost }}
-              </div>
-            </div>
-            <div style="padding-top: 20px" class="btn_event">
-              <button
-                v-if="event.flag_joined == null || event.flag_joined == '0'"
-                id="button"
-                style="
-                  width: 40%;
-                  border-radius: 15px;
-                  letter-spacing: 1.5px;
-                  color: #ff8354;
-                  border-color: #ff8354;
-                  font-weight: 500;
-                  background-color: white;
-                "
-                type="button"
-                class="btn btn-outline"
-                @click.stop="joinEvent(event.id)"
-              >
-                JOIN
-              </button>
-              <button
-                v-if="event.flag_joined == '1'"
-                id="button"
-                style="
-                  width: 65%;
-                  border-radius: 15px;
-                  letter-spacing: 1.5px;
-                  color: #ff8354;
-                  border-color: #ff8354;
-                  font-weight: 500;
-                  background-color: white;
-                  white-space: none !important;
-                "
-                type="button"
-                class="btn btn-outline"
-                disabled
-              >
-                YOU ARE REGISTERED
-              </button>
+              JOIN
+            </button>
+            <button
+              v-if="event.flag_joined == '1'"
+              id="button"
+              style="
+                width: 65%;
+                border-radius: 15px;
+                letter-spacing: 1.5px;
+                color: #ff8354;
+                border-color: #ff8354;
+                font-weight: 500;
+                background-color: white;
+                white-space: none !important;
+              "
+              type="button"
+              class="btn btn-outline"
+              disabled
+            >
+              YOU ARE REGISTERED
+            </button>
 
-              <button
-                v-if="event.flag_joined == '1'"
-                id="button"
+            <button
+              v-if="event.flag_joined == '1'"
+              id="button"
+              style="
+                width: 65%;
+                border-radius: 15px;
+                letter-spacing: 1.5px;
+                color: #ff8354;
+                border-color: #ff8354;
+                font-weight: 500;
+                background-color: white;
+              "
+              type="button"
+              class="btn btn-outline btn_event_cancel"
+              @click="
+                cancelConfirm(
+                  event.id,
+                  event.event_date2,
+                  event.event_start
+                )
+              "
+            >
+              CANCEL
+            </button>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+              <i
+                @click="ShareFb(event.id)"
+                class="fab fa-facebook-square"
                 style="
-                  width: 65%;
-                  border-radius: 15px;
-                  letter-spacing: 1.5px;
-                  color: #ff8354;
-                  border-color: #ff8354;
-                  font-weight: 500;
-                  background-color: white;
+                  font-size: 30px;
+                  color: #47639f;
+                  margin-left: 10px;
+                  cursor: pointer;
                 "
-                type="button"
-                class="btn btn-outline btn_event_cancel"
-                @click="
-                  cancelConfirm(event.id, event.event_date2, event.event_start)
-                "
+              ></i>
+              <a
+                class="twitter-share-button-x customer share"
+                v-on:click="ShareTwitter"
+                href="https://twitter.com/share?url=https://www.answebtechnologies.in&amp;text=flooop&amp;hashtags=flooop"
+                data-size="small"
               >
-                CANCEL
-              </button>
-            </div>
-            <br />
-            <div class="row">
-              <div class="col-lg-12 col-md-12 col-12">
                 <i
-                  @click="ShareFb(event.id)"
-                  class="fab fa-facebook-square"
+                  class="fab fa-twitter-square"
                   style="
                     font-size: 30px;
-                    color: #47639f;
+                    color: #6ab6f0;
+                    margin-left: 10px;
+                    cursor: pointer;
+                  "
+                ></i
+              ></a>
+              <i
+                @click="OpenInviteFriend(event.id)"
+                class="fas fa-envelope"
+                style="
+                  font-size: 30px;
+                  color: rgb(168 162 162);
+                  margin-left: 10px;
+                  cursor: pointer;
+                "
+              ></i>
+              <a
+                class="customer share"
+                v-on:click="ShareWhatsApp"
+                href="https://api.whatsapp.com/send?phone=7976110767&text="
+              >
+                <i
+                  class="fab fa-whatsapp-square"
+                  style="
+                    font-size: 30px;
+                    color: #3cd15f;
                     margin-left: 10px;
                     cursor: pointer;
                   "
                 ></i>
-                <a
-                  class="twitter-share-button-x customer share"
-                  v-on:click="ShareTwitter"
-                  href="https://twitter.com/share?url=https://www.answebtechnologies.in&amp;text=flooop&amp;hashtags=flooop"
-                  data-size="small"
-                >
-                  <i
-                    class="fab fa-twitter-square"
-                    style="
-                      font-size: 30px;
-                      color: #6ab6f0;
-                      margin-left: 10px;
-                      cursor: pointer;
-                    "
-                  ></i
-                ></a>
-                <i
-                  @click="OpenInviteFriend(event.id)"
-                  class="fas fa-envelope"
-                  style="
-                    font-size: 30px;
-                    color: rgb(168 162 162);
-                    margin-left: 10px;
-                    cursor: pointer;
-                  "
-                ></i>
-                <a
-                  class="customer share"
-                  v-on:click="ShareWhatsApp"
-                  href="https://api.whatsapp.com/send?phone=7976110767&text="
-                >
-                  <i
-                    class="fab fa-whatsapp-square"
-                    style="
-                      font-size: 30px;
-                      color: #3cd15f;
-                      margin-left: 10px;
-                      cursor: pointer;
-                    "
-                  ></i>
-                </a>
-                <i
-                  class="fab fa-facebook-messenger"
-                  style="
-                    font-size: 30px;
-                    color: rgb(25 150 246);
-                    margin-left: 10px;
-                    cursor: pointer;
-                  "
-                ></i>
-                <i
-                  @click="addFavourite(event.id)"
-                  class="far fa-heart"
-                  v-bind:class="{ active: event.flag_fav === '1' }"
-                  style="
-                    font-size: 30px;
-                    color: lightgray;
-                    margin-left: 10px;
-                    cursor: pointer;
-                  "
-                ></i>
-              </div>
+              </a>
+              <i
+                class="fab fa-facebook-messenger"
+                style="
+                  font-size: 30px;
+                  color: rgb(25 150 246);
+                  margin-left: 10px;
+                  cursor: pointer;
+                "
+              ></i>
+              <i
+                @click="addFavourite(event.id)"
+                class="far fa-heart"
+                v-bind:class="{ active: event.flag_fav === '1' }"
+                style="
+                  font-size: 30px;
+                  color: lightgray;
+                  margin-left: 10px;
+                  cursor: pointer;
+                "
+              ></i>
             </div>
           </div>
         </div>
       </div>
-      <b-modal :active.sync="isComponentModalActive" has-modal-card>
-        <form action="" @submit="submitInvite($event)">
-          <div class="modal-card" style="width: auto">
-            <header class="modal-card-head">
-              <p class="modal-card-title">Invite Friend</p>
-            </header>
-            <section class="modal-card-body">
-              <b-field label="Email">
-                <b-input
-                  type="email"
-                  :value="email"
-                  v-model="inviteObj.email"
-                  placeholder="Your email"
-                  required
-                >
-                </b-input>
-              </b-field>
-            </section>
-            <footer class="modal-card-foot">
-              <button class="button" type="button" @click="CloseInviteFriend()">
-                Close
-              </button>
-              <button class="button is-primary" :disabled="isDisabled">
-                Invite
-                <img
-                  v-if="loading"
-                  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-                />
-              </button>
-            </footer>
-          </div>
-        </form>
-      </b-modal>
     </div>
+    <b-modal :active.sync="isComponentModalActive" has-modal-card>
+      <form action="" @submit="submitInvite($event)">
+        <div class="modal-card" style="width: auto">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Invite Friend</p>
+          </header>
+          <section class="modal-card-body">
+            <b-field label="Email">
+              <b-input
+                type="email"
+                :value="email"
+                v-model="inviteObj.email"
+                placeholder="Your email"
+                required
+              >
+              </b-input>
+            </b-field>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button" type="button" @click="CloseInviteFriend()">
+              Close
+            </button>
+            <button class="button is-primary" :disabled="isDisabled">
+              Invite
+              <img
+                v-if="loading"
+                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+              />
+            </button>
+          </footer>
+        </div>
+      </form>
+    </b-modal>
+  </div>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
 import EventService from "../services/user.service";
+import EventsComponent from "../components/eventsComponent";
 import AuthService from "../services/auth.service";
 import axios from "axios";
 import moment from "moment";
@@ -530,7 +517,7 @@ export default {
       document.documentElement.scrollTop = offsetPosition;
       document.body.scrollTop = offsetPosition; // For Safari
       for (let i = 0; i < 100; i++) {
-        document.getElementById("dateCard_" + i) ? document.getElementById("dateCard_" + i).classList.remove("active1") : null;
+        document.getElementById("dateCard_" + i).classList.remove("active1");
         dateCard.classList.add("active1");
       }
       // element.scrollIntoView({
@@ -539,7 +526,7 @@ export default {
       //     behavior: "smooth",
       // });
     },
-
+    
     ShareTwitter(event) {
       //alert('x');
       event.preventDefault();
@@ -665,14 +652,8 @@ export default {
         return s;
       } else return time;
     },
-    redirectToDetail: function (id) {
-       if (AuthService.isLoggedIn() == false) {
-        Vue.$toast.success("Please Login to Join Event", {
-          duration: 2000,
-        });
-      }else{
-        this.$router.push("/event-detail/" + id);
-      }
+    redirectToDetail: function () {
+      this.$router.push("/event-detail");
     },
     redirectToCatDetail: function (id) {
       this.$router.push("/category/" + id);
@@ -897,33 +878,81 @@ export default {
 }
 .slick-slide {
   width: 10% !important;
+}
+.slick-slide {
   margin-right: 10px !important;
 }
-  .dateCard-body .slick-slide {
-    width: 10% !important;
-  }
 .slick-prev:before {
-  content: "<";
+    content: '<';
 }
 .slick-next:before {
-  content: ">";
+ content: '>';
 }
-.slick-prev:before,
-.slick-next:before {
-  font-family: "slick";
-  font-size: 20px;
-  line-height: 1;
-  opacity: 0.75;
-  color: rgb(38, 118, 169);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.slick-prev:before, .slick-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: 0.75;
+    color: rgb(38, 118, 169);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
-.content-margin-top {
+.content-margin-top{
   margin-top: 80px;
 }
-.category-title {
+@media (min-width: 769px) {
+  .category-view div {
+    display: inline-block;
+    list-style: none;
+    width: 12.5%;
+    padding: 0 10px;
+    vertical-align: top;
+  }
+}
+
+@media (max-width: 769px) {
+  .date-view-li1 {
+    font-size: 13px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .date-view-li2 {
+    font-size: 15px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .date-view-li {
+    padding: 5px 6px 10px 12px;
+}
+  .active1 {
+    list-style: none;
+    display: inline-block;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px 10px 10px 12px;
+    background: #f18249;
+    border-radius: 15px;
+    margin: 0 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.content-margin-top{
+  margin-top:10px;
+}
+.category-title{
   color: #2676a9;
   font-size: 12px;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+}
+.category-title{
+  color: #2676a9;
+  font-size: 11px;
   text-align: center;
   display: inline-block;
   width: 100%;
@@ -947,63 +976,5 @@ export default {
 .btn_event:hover > .btn_event_cancel {
   display: inline-block;
   margin-top: 5px;
-}
-.card-event-title{
-  cursor: pointer; text-align: center; font-weight: 600; color: rgb(146, 146, 146); letter-spacing: 1.5px;
-}
-@media (min-width: 769px) {
-  .category-view div {
-    display: inline-block;
-    list-style: none;
-    width: 12.5%;
-    padding: 0 10px;
-    vertical-align: top;
-  }
-}
-
-@media (max-width: 769px) {
-  .card-event-title{
-    font-size: 12px;
-  }
-  .date-view-li1 {
-    font-size: 13px;
-    cursor: pointer;
-    text-transform: uppercase;
-  }
-  .date-view-li2 {
-    font-size: 15px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: bold;
-  }
-  .date-view-li {
-    padding: 5px 6px 10px 12px;
-  }
-  .active1 {
-    list-style: none;
-    display: inline-block;
-    color: #fff;
-    font-size: 14px;
-    text-align: center;
-    padding: 5px 10px 10px 12px;
-    background: #f18249;
-    border-radius: 15px;
-    margin: 0 10px;
-    cursor: pointer;
-    text-transform: uppercase;
-  }
-
-  .content-margin-top {
-    margin-top: 10px;
-  }
-  .category-title {
-    font-size: 10px !important;
-    text-align: center !important;
-    margin-top: -15px;
-    vertical-align: top;
-  }
-  .dateCard-body .slick-slide {
-    width: 25% !important;
-  }
 }
 </style>

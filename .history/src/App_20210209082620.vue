@@ -57,11 +57,11 @@
           <div
             class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2"
           >
-            <ul class="navbar-nav mr-auto text-center margin-left-right">
-              <li class="nav-item pl-3 pr-3 padding-left-right">
+            <ul class="navbar-nav mr-auto text-center">
+              <li class="nav-item pl-3 pr-3">
                 <router-link to="/#"><span>BECOME A HOST</span></router-link>
               </li>
-              <li class="nav-item pl-3 pr-3 padding-left-right">
+              <li class="nav-item pl-3 pr-3">
                 <router-link to="/join"><span>JOIN</span></router-link
                 ><a class="noLink"><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span></a>
                 <router-link to="/login"><span>LOGIN</span></router-link>
@@ -132,7 +132,7 @@
       <br />
       <br />
       <br v-if="window.width < 600" />
-      <div class="content-margin-top">
+      <div style="margin-top:50px;">
       <router-view class="view"></router-view>
       </div>
       <!-- copyright -->
@@ -542,27 +542,11 @@ a:hover .head {
 @import "./assets/css/style.css";
 @import "./assets/css/fontawesome-all.css";
 
- .content-margin-top{
-    margin-top: 50px;
-  }
 @media (max-width: 769px) {
   .navbar-nav > li.nav-item.pl-3.pr-3 {
     margin-bottom: 18px;
     padding-left: 0rem !important;
     margin-left: 0 !important;
-  }
-  .padding-left-right{
-    padding: 0 !important;
-  }
-  .margin-left-right{
-    margin-right: 0 !important;
-    margin-left: 0 !important;
-  }
-  .content-margin-top{
-    margin-top: 10px;
-  }
-  .navbar-toggler:hover, .navbar-toggler:focus{
-    outline: none;
   }
 }
 </style>

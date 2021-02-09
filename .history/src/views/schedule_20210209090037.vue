@@ -247,7 +247,8 @@
               style="color: #929292; margin-top: 5px; letter-spacing: 1.5px"
               class="card-text"
             >
-              <div @click="redirectToDetail(event.id)" >
+              <div>
+                {{ event.event_date }} <br />
                 {{
                   event.event_start === "00:00 " ||
                   event.event_start === "00:00" ||
@@ -446,6 +447,7 @@
 <script>
 import Vue from "vue";
 import EventService from "../services/user.service";
+import EventsComponent from "../components/eventsComponent";
 import AuthService from "../services/auth.service";
 import axios from "axios";
 import moment from "moment";
@@ -665,14 +667,8 @@ export default {
         return s;
       } else return time;
     },
-    redirectToDetail: function (id) {
-       if (AuthService.isLoggedIn() == false) {
-        Vue.$toast.success("Please Login to Join Event", {
-          duration: 2000,
-        });
-      }else{
-        this.$router.push("/event-detail/" + id);
-      }
+    redirectToDetail: function () {
+      this.$router.push("/event-detail");
     },
     redirectToCatDetail: function (id) {
       this.$router.push("/category/" + id);
@@ -897,11 +893,10 @@ export default {
 }
 .slick-slide {
   width: 10% !important;
+}
+.slick-slide {
   margin-right: 10px !important;
 }
-  .dateCard-body .slick-slide {
-    width: 10% !important;
-  }
 .slick-prev:before {
   content: "<";
 }

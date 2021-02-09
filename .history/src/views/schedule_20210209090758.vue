@@ -446,6 +446,7 @@
 <script>
 import Vue from "vue";
 import EventService from "../services/user.service";
+import EventsComponent from "../components/eventsComponent";
 import AuthService from "../services/auth.service";
 import axios from "axios";
 import moment from "moment";

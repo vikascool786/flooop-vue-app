@@ -446,6 +446,7 @@
 <script>
 import Vue from "vue";
 import EventService from "../services/user.service";
+import EventsComponent from "../components/eventsComponent";
 import AuthService from "../services/auth.service";
 import axios from "axios";
 import moment from "moment";
@@ -896,12 +897,11 @@ export default {
   font-weight: bold;
 }
 .slick-slide {
-  width: 10% !important;
+  width: 12% !important;
+}
+.slick-slide {
   margin-right: 10px !important;
 }
-  .dateCard-body .slick-slide {
-    width: 10% !important;
-  }
 .slick-prev:before {
   content: "<";
 }

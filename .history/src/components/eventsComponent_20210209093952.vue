@@ -563,8 +563,4 @@ export default {
   display: inline-block;
   margin-top: 5px;
 }
-.card:hover{
-  box-shadow: none !important;
-  border: 1px solid #929292;
-}
 </style>

@@ -204,20 +204,6 @@
         class="col-lg-4 col-md-6 col-12"
         :key="index"
       >
-      <div class="row">
-        <div class="col-md-12 mb-3" :id="'date_' + index">
-          <p
-            style="
-              background: #f8bd40;
-              color: rgb(38, 118, 169);
-              margin-top: 30px;
-              padding-left: 10px;
-            "
-          >
-            {{ event.date }}
-          </p>
-        </div>
-      </div>
         <div
           class="card"
           style="
@@ -247,7 +233,8 @@
               style="color: #929292; margin-top: 5px; letter-spacing: 1.5px"
               class="card-text"
             >
-              <div @click="redirectToDetail(event.id)" >
+              <div>
+                {{ event.event_date }} <br />
                 {{
                   event.event_start === "00:00 " ||
                   event.event_start === "00:00" ||
@@ -446,6 +433,7 @@
 <script>
 import Vue from "vue";
 import EventService from "../services/user.service";
+import EventsComponent from "../components/eventsComponent";
 import AuthService from "../services/auth.service";
 import axios from "axios";
 import moment from "moment";
@@ -530,7 +518,7 @@ export default {
       document.documentElement.scrollTop = offsetPosition;
       document.body.scrollTop = offsetPosition; // For Safari
       for (let i = 0; i < 100; i++) {
-        document.getElementById("dateCard_" + i) ? document.getElementById("dateCard_" + i).classList.remove("active1") : null;
+        document.getElementById("dateCard_" + i).classList.remove("active1");
         dateCard.classList.add("active1");
       }
       // element.scrollIntoView({
@@ -665,14 +653,8 @@ export default {
         return s;
       } else return time;
     },
-    redirectToDetail: function (id) {
-       if (AuthService.isLoggedIn() == false) {
-        Vue.$toast.success("Please Login to Join Event", {
-          duration: 2000,
-        });
-      }else{
-        this.$router.push("/event-detail/" + id);
-      }
+    redirectToDetail: function () {
+      this.$router.push("/event-detail");
     },
     redirectToCatDetail: function (id) {
       this.$router.push("/category/" + id);
@@ -897,11 +879,10 @@ export default {
 }
 .slick-slide {
   width: 10% !important;
+}
+.slick-slide {
   margin-right: 10px !important;
 }
-  .dateCard-body .slick-slide {
-    width: 10% !important;
-  }
 .slick-prev:before {
   content: "<";
 }

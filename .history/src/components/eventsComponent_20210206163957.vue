@@ -24,7 +24,7 @@
         </div>
         <img
           @click="redirectToDetail(event.id)"
-          style="width: 100%; border-radius: 10px; height: 140px;object-fit: cover;"
+          style="width: 100%; border-radius: 10px; height: 140px"
           :src="event.path"
         />
         <div class="card-body">
@@ -562,9 +562,5 @@ export default {
 .btn_event:hover > .btn_event_cancel {
   display: inline-block;
   margin-top: 5px;
-}
-.card:hover{
-  box-shadow: none !important;
-  border: 1px solid #929292;
 }
 </style>

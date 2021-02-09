@@ -446,6 +446,7 @@
 <script>
 import Vue from "vue";
 import EventService from "../services/user.service";
+import EventsComponent from "../components/eventsComponent";
 import AuthService from "../services/auth.service";
 import axios from "axios";
 import moment from "moment";
@@ -666,13 +667,7 @@ export default {
       } else return time;
     },
     redirectToDetail: function (id) {
-       if (AuthService.isLoggedIn() == false) {
-        Vue.$toast.success("Please Login to Join Event", {
-          duration: 2000,
-        });
-      }else{
-        this.$router.push("/event-detail/" + id);
-      }
+      this.$router.push("/event-detail/" + id);
     },
     redirectToCatDetail: function (id) {
       this.$router.push("/category/" + id);
@@ -896,12 +891,11 @@ export default {
   font-weight: bold;
 }
 .slick-slide {
-  width: 10% !important;
+  width: 12% !important;
+}
+.slick-slide {
   margin-right: 10px !important;
 }
-  .dateCard-body .slick-slide {
-    width: 10% !important;
-  }
 .slick-prev:before {
   content: "<";
 }
