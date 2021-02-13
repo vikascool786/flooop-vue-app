@@ -24,7 +24,8 @@ const gauthOption = {
 };
 Vue.use(GoogleAuth, gauthOption);
 
-Vue.prototype.$apiURI = "http://flooopadmin.local/api/";
+Vue.prototype.$apiURI = "http://floooplife.com/flooopadmin/api/";
+// Vue.prototype.$apiURI = "http://flooopadmin.local/api/";
 
 Vue.use(VueSimpleAlert);
 Vue.use(VueToast, {
