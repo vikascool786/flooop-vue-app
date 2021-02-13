@@ -378,51 +378,15 @@
           <div style="padding-top: 10px" class="col-lg-1 col-md-1 col-1">
             <label
               style="text-align: left; letter-spacing: 1.5px; color: #929292"
-              class="label"
-            >
-              &nbsp;</label
-            >
+              class="label">&nbsp;</label>
             <div class="control">
               <div class="box_time">
-                <i
-                  class="fas fa-caret-up arrow"
-                  v-on:click="incrementTimeZone"
-                ></i>
+                <i class="fas fa-caret-up arrow" v-on:click="incrementTimeZone"></i>
                 <div>
-                  <input
-                    style="
-                      border-radius: none;
-                      border: none;
-                      text-align: center;
-                      box-shadow: none;
-                      color: #929292;;
-                      font-weight: bold;
-                      height: 20px;
-                      display: block;
-                    "
-                    class="input"
-                    v-model="eventObj.event_start_timezone"
-                  />
+                  <input class="input input-timezone" v-model="eventObj.event_start_timezone_title"/>
                 </div>
-                <i
-                  class="fas fa-caret-down arrow"
-                  v-on:click="decrementTimeZone"
-                ></i>
+                <i class="fas fa-caret-down arrow" v-on:click="decrementTimeZone"></i>
               </div>
-              <!-- <select
-                style="border-radius: 15px"
-                class="input"
-                v-model="eventObj.event_start_timezone"
-              >
-                <option value="" disabled selected>Please Select</option>
-                <option
-                  v-for="(item, index) in timezones"
-                  :value="item.id"
-                  :key="index"
-                >
-                  {{ item.title }}
-                </option>
-              </select> -->
               <div style="margin-top: 5px" v-if="timezoneRequire">
                 <span style="color: red; letter-spacing: 1.5px">Required</span>
               </div>
@@ -779,7 +743,7 @@ export default {
       timezones: [],
       url: null,
       show: true,
-      allTimeZones: ['GMT', 'UTC', 'ECT', 'EET', 'ART', 'EAT', 'MET', 'NET', 'PLT', 'IST', 'BST', 'VST', 'CTT', 'JST', 'ACT', 'AET', 'SST', 'NST', 'MIT', 'HST', 'AST', 'PST', 'PNT', 'MST', 'CST', 'EST', 'IET', 'PRT', 'CNT', 'AGT', 'BET', 'CAT'],
+      //allTimeZones: ['GMT', 'UTC', 'ECT', 'EET', 'ART', 'EAT', 'MET', 'NET', 'PLT', 'IST', 'BST', 'VST', 'CTT', 'JST', 'ACT', 'AET', 'SST', 'NST', 'MIT', 'HST', 'AST', 'PST', 'PNT', 'MST', 'CST', 'EST', 'IET', 'PRT', 'CNT', 'AGT', 'BET', 'CAT'],
       initialTimeZone: 0,
       eventObj: {
         id: "", 
@@ -793,6 +757,7 @@ export default {
         event_start_time: "",
         event_start_hours: 1,
         event_start_minutes: 0,
+        event_start_timezone_title: "",
         event_start_timezone: "",
         event_start_AmPm: "AM",
         event_duration: "",
@@ -808,11 +773,8 @@ export default {
     };
   },
   mounted() {
-    this.eventObj.event_start_timezone = this.allTimeZones[0];
-    // let url = "https://answebtechnologies.in/";
-    // let url = "http://localhost/";
-    let url = "http://floooplife.com/";
-    axios.get(url + "flooopadmin/api/category/read.php").then((response) => {
+    let url = this.$apiURI;
+    axios.get(url + "category/read.php").then((response) => {
       var result = response.data.records;
       result.forEach((element) => {
         var category = {};
@@ -825,7 +787,7 @@ export default {
       });
     });
 
-    axios.get(url + "flooopadmin/api/language/read.php").then((response) => {
+    axios.get(url + "language/read.php").then((response) => {
       var result = response.data.records;
       result.forEach((element) => {
         var language = {};
@@ -836,14 +798,16 @@ export default {
       });
     });
 
-    axios.get(url + "flooopadmin/api/timezone/read.php").then((response) => {
+    axios.get(url + "timezone/read.php").then((response) => {
       this.timezones = response.data.records;
+      this.eventObj.event_start_timezone_title = this.timezones[0]['title'];
+      this.eventObj.event_start_timezone = this.timezones[0]['id'];
     });
   },
   methods: {
     loadCategories: function () {
       this.categories = [];
-      axios.get(url + "flooopadmin/api/category/read.php").then((response) => {
+      axios.get(url + "category/read.php").then((response) => {
         var result = response.data.records;
         result.forEach((element) => {
           var category = {};
@@ -905,36 +869,25 @@ export default {
     decrementAmPm: function () {
      this.eventObj.event_start_AmPm = "PM"
     },
-    incrementTimeZone : function(){
-      let i = 0;
-      this.initialTimeZone++
-      if (this.eventObj.event_start_minutes <= 31) {
-      this.eventObj.event_start_timezone = this.allTimeZones[this.initialTimeZone - 1];
+    incrementTimeZone: function () {
+      if (this.eventObj.event_start_minutes <= 31 &&
+              typeof this.timezones[this.initialTimeZone+1] != "undefined") {
+        this.initialTimeZone++;
+        this.eventObj.event_start_timezone_title = this.timezones[this.initialTimeZone]['title'];
+        this.eventObj.event_start_timezone = this.timezones[this.initialTimeZone]['id'];
       }
-      
+
     },
-    decrementTimeZone : function(){
-      // let i = 1;
-      this.initialTimeZone--
-      if (this.eventObj.event_start_minutes >= 0) {
-      this.eventObj.event_start_timezone = this.allTimeZones[this.initialTimeZone - 1];
+    decrementTimeZone: function () {
+      if (this.eventObj.event_start_minutes >= 0 &&
+              typeof this.timezones[this.initialTimeZone - 1] != "undefined") {
+        this.initialTimeZone--;
+        this.eventObj.event_start_timezone_title = this.timezones[this.initialTimeZone]['title'];
+        this.eventObj.event_start_timezone = this.timezones[this.initialTimeZone]['id'];
       }
     },
 
     submit(event) {
-      this.eventObj.event_start_timezone = 1;
-      if(this.eventObj.event_start_timezone === "GMT"){
-        this.eventObj.event_start_timezone = 2;
-      } 
-      if(this.eventObj.event_start_timezone === "UTC"){
-        this.eventObj.event_start_timezone = 1;
-      } 
-      if(this.eventObj.event_start_timezone === "IST"){
-        this.eventObj.event_start_timezone = 1;
-      } 
-      if(this.eventObj.event_start_timezone === "CST"){
-        this.eventObj.event_start_timezone = 1;
-      } 
 
       event.preventDefault();
       var payload = this.eventObj;
@@ -983,7 +936,7 @@ export default {
       } else {
         this.minuteRequire = false;
       }
-      if (this.eventObj.event_start_timezone == "") {
+      if (this.eventObj.event_start_timezone == "" || this.eventObj.event_start_timezone_title == "") {
         this.timezoneRequire = true;
         return;
       } else {
@@ -1029,6 +982,7 @@ export default {
             event_start_time: "",
             event_start_hours: "",
             event_start_minutes: "",
+            event_start_timezone_title: "",
             event_start_timezone: "",
             event_start_AmPm: "",
             event_duration: "",
@@ -1166,4 +1120,17 @@ export default {
 .vue-select-image__item{
   width: 20%;
 }
+  .input-timezone{
+    border-radius: unset;
+    text-align: center;
+    color: #929292;;
+    font-weight: bold;
+    display: block;
+    height: 20px !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .box_time div{
+    line-height: 1.3rem;
+  }
 </style>

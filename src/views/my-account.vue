@@ -531,6 +531,9 @@
         >
           {{ event.event_title }}
         </p>
+        <p class="card-text zoom-passcode" title="Use the passcode to join the meeting">
+          Zoom Passcode: {{ event.zoom_password }}
+        </p>
       </div>
       <div class="col-lg-6 col-md-6 col-12">
         <div
@@ -625,8 +628,9 @@
           class=""
         >
           <button
-            id="button"
+            id="button2"
             type="button"
+            @click="startAttendeeEvent(event)"
             class="btn btn-outline-danger join_button"
           >
             JOIN {{ event.event_countdown_label2 }}
@@ -723,6 +727,9 @@
         >
           {{ event.event_title }}
         </p>
+        <p class="card-text zoom-passcode" title="Use the passcode to join the meeting">
+          Zoom Passcode: {{ event.zoom_password }}
+        </p>
       </div>
       <div class="col-lg-6 col-md-6 col-12">
         <div
@@ -812,6 +819,7 @@
             id="button"
             type="button"
             class="btn btn-outline-danger"
+            @click="startHostEvent(event)"
             style="
               width: 100%;
               border-radius: 15px;
@@ -944,6 +952,20 @@ export default {
     };
   },
   methods: {
+    startHostEvent(event) {
+      if (event.zoom_id != null && event.zoom_id != "") {
+        window.open("https://us04web.zoom.us/wc/" + event.zoom_id + "/start", '_blank')
+      } else {
+        alert("Sorry, this event is not created on zoom.");
+      }
+    },
+    startAttendeeEvent(event) {
+      if (event.zoom_id != null && event.zoom_id != "") {
+        window.open("https://us04web.zoom.us/wc/join/" + event.zoom_id, '_blank')
+      } else {
+        alert("Sorry, this event is not created on zoom.");
+      }
+    },
     getStartTime: function(time) {
       if(time){
       var s = time.toString();
@@ -1261,5 +1283,11 @@ span.active {
   }
   .zoom-setting button{
     margin-top: 15px;
+  }
+  .zoom-passcode{
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    line-height: 17px;
   }
 </style>

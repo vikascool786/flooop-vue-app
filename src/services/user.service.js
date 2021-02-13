@@ -1,7 +1,5 @@
 import axios from 'axios';
-// const API_URL = 'https://answebtechnologies.in/flooopadmin/api/';
-// const API_URL = 'http://sh009.hostgator.tempwebhost.net/~a1610nqz/flooopadmin/api/';
-// const API_URL = 'http://floooplife.com/flooopadmin/api/';
+
 const API_URL = 'http://flooopadmin.local/api/';
 
 class EventService {
@@ -122,6 +120,7 @@ class EventService {
     form.append("event_start_hours", eventToPost.event_start_hours);
     form.append("event_start_minutes", eventToPost.event_start_minutes);
     form.append("event_start_timezone", eventToPost.event_start_timezone);
+    form.append("event_start_timezone_title", eventToPost.event_start_timezone_title);
     form.append("event_start_AmPm", eventToPost.event_start_AmPm);
     form.append("event_duration", eventToPost.event_duration);
     form.append("event_group", eventToPost.event_group.replace("upto", ""));
@@ -156,6 +155,7 @@ class EventService {
     form.append("event_start_hours", eventToPost.event_start_hours);
     form.append("event_start_minutes", eventToPost.event_start_minutes);
     form.append("event_start_timezone", eventToPost.timezone);
+    form.append("event_start_timezone_title", eventToPost.timezone_title);
     form.append("event_start_AmPm", eventToPost.event_ampm);
     form.append("event_duration", eventToPost.event_duration);
     form.append("event_group", eventToPost.event_group.replace("upto", ""));
@@ -166,6 +166,7 @@ class EventService {
     form.append("event_hosts", eventToPost.event_hosts);
     form.append("event_questions", eventToPost.event_questions);
     form.append("event_name_display", eventToPost.event_name_display);
+    form.append("zoom_id", eventToPost.zoom_id);
     return axios({
         method: "post",
         url: API_URL + 'event/edit.php',

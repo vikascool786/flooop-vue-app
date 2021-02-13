@@ -199,7 +199,7 @@
         <div style="padding-top: 10px;" class="col-lg-2 col-md-2 col-4">
              <label style="text-align:left;letter-spacing: 1.5px;color:#929292;" class="label"> Timezone</label>
         <div class="control">
-      <select style="border-radius:15px;" class="input" v-model=" eventObj.timezone">
+      <select style="border-radius:15px;" class="input" v-model="eventObj.timezone" @change="onChangeTimezone($event)">
          <option value="" disabled selected>Please Select</option>
       <option v-for="item in timezones" :value="item.id">{{item.title}}</option>
 </select>
@@ -443,6 +443,7 @@ export default {
         event_start_hours: "",
         event_start_minutes: "",
         timezone: "",
+        timezone_title: "",
         event_ampm: "",
         event_duration: "",
         event_group: "",
@@ -452,7 +453,8 @@ export default {
         event_hosts: "",
         event_questions: "",
         event_keywords: "",
-        event_name_display: ""
+        event_name_display: "",
+          zoom_id: ""
       }
 
     };
@@ -460,7 +462,7 @@ export default {
    mounted() {
     
     axios
-      .get("https://answebtechnologies.in/flooopadmin/api/category/read.php")
+      .get(this.$apiURI + "category/read.php")
       .then(response => {
         var result = response.data.records;
         result.forEach(element => {
@@ -477,7 +479,7 @@ export default {
       });
 
        axios
-      .get("https://answebtechnologies.in/flooopadmin/api/language/read.php")
+      .get(this.$apiURI +"language/read.php")
       .then(response => {
         var result = response.data.records;
          result.forEach(element => {
@@ -490,7 +492,7 @@ export default {
       });
 
        axios
-      .get("https://answebtechnologies.in/flooopadmin/api/timezone/read.php")
+      .get(this.$apiURI +"timezone/read.php")
       .then(response => {
        this.timezones = response.data.records;
       });
@@ -521,10 +523,13 @@ export default {
       );
   },
   methods: {
+      onChangeTimezone(event){
+          this.eventObj.timezone_title = event.target.options[event.target.selectedIndex].text.trim();
+      },
     loadCategories: function () {
       this.categories = [];
       axios
-      .get("https://answebtechnologies.in/flooopadmin/api/category/read.php")
+      .get(this.$apiURI +"category/read.php")
       .then(response => {
         var result = response.data.records;
         result.forEach(element => {
@@ -621,7 +626,7 @@ export default {
       {
          this.minuteRequire = false;
       }
-       if (this.eventObj.event_start_timezone == "") {
+       if (this.eventObj.timezone == "") {
         this.timezoneRequire = true;
         return;
       }
@@ -653,6 +658,7 @@ export default {
       {
          this.groupRequire = false;
       }
+
       // post data
       this.loading = true;
       EventService.editEvent(eventToPost).then(
