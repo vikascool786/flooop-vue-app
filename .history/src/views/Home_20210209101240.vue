@@ -54,7 +54,7 @@
             >JOIN FOR FREE</button>
             </div>
         </div>
-        <br /> <br />
+        <br />
         <div class="row">
           <div class="col-md-4 col-12 live-and-upcoming-hr">
             <hr style="background-color: rgb(247 114 57); height: 0.01em;" />

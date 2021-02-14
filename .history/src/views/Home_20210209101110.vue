@@ -54,7 +54,7 @@
             >JOIN FOR FREE</button>
             </div>
         </div>
-        <br /> <br />
+        <br />
         <div class="row">
           <div class="col-md-4 col-12 live-and-upcoming-hr">
             <hr style="background-color: rgb(247 114 57); height: 0.01em;" />
@@ -68,7 +68,7 @@
             <hr style="background-color: rgb(247 114 57);    height: 0.01em;" />
           </div>
         </div>
-        <br />  <br />
+        <br />
         <EventsComponent page="HomeLiveUpcoming"> </EventsComponent>
 
         <br /><br /><br />
@@ -86,7 +86,7 @@
             <hr style="background-color:#134b86;height:0.01em;" />
           </div>
         </div>
-        <br />  <br />
+        <br />
         <div class="row">
           <div class="col-lg-6 col-md-6 col-12" style="height: 300px;" 
           @click="redirectToCatDetail('1')">

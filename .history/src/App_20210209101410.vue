@@ -66,9 +66,6 @@
                 ><a class="noLink"><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span></a>
                 <router-link to="/login"><span>LOGIN</span></router-link>
               </li>
-              <li class="nav-item pl-3 pr-3 padding-left-right" v-if="loggedIn">
-                <router-link style="letter-spacing: 2px;font-size: 0.92em;font-weight: 400; border-bottom:none;" to="/my-account"><i style="font-size:15px;letter-spacing: 2px;font-size: 1em;font-weight: 400;" class="fa fa-user"></i></router-link>
-              </li>
             </ul>
           </div>
         </nav>
