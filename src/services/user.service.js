@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_URL = 'http://floooplife.com/flooopadmin/api/';
-//const API_URL = 'http://flooopadmin.local/api/';
+// const API_URL = 'http://flooopadmin.local/api/';
 
 class EventService {
  

@@ -954,16 +954,53 @@ export default {
   methods: {
     startHostEvent(event) {
       if (event.zoom_id != null && event.zoom_id != "") {
-        window.open("https://us04web.zoom.us/wc/" + event.zoom_id + "/start", '_blank')
+        // window.open("https://us04web.zoom.us/wc/" + event.zoom_id + "/start", '_blank')
+
+    /*    this.$router.push({
+          name: 'Meeting', query: {
+            name: this.user.first_name + ' ' + this.user.last_name,
+            meetingId: event.zoom_id,
+            password: event.zoom_password,
+            role: 1
+          }
+        });*/
+
+        let routeData = this.$router.resolve({
+          name: 'Meeting', query: {
+            name: this.user.first_name + ' ' + this.user.last_name,
+            email: this.user.email,
+            meetingId: event.zoom_id,
+            password: event.zoom_password,
+            role: 1
+          }
+        });
+        window.open(routeData.href, '_blank');
+
       } else {
-        alert("Sorry, this event is not created on zoom.");
+        Vue.$toast.error("Sorry, this event is not created on zoom", {
+          duration: 2000,
+        });
       }
     },
     startAttendeeEvent(event) {
       if (event.zoom_id != null && event.zoom_id != "") {
-        window.open("https://us04web.zoom.us/wc/join/" + event.zoom_id, '_blank')
+        // window.open("https://us04web.zoom.us/wc/join/" + event.zoom_id, '_blank')
+
+        let routeData = this.$router.resolve({
+          name: 'Meeting', query: {
+            name: this.user.first_name + ' ' + this.user.last_name,
+            email: this.user.email,
+            meetingId: event.zoom_id,
+            password: event.zoom_password,
+            role: 0
+          }
+        });
+        window.open(routeData.href, '_blank');
+
       } else {
-        alert("Sorry, this event is not created on zoom.");
+        Vue.$toast.error("Sorry, this event is not created on zoom", {
+          duration: 2000,
+        });
       }
     },
     getStartTime: function(time) {

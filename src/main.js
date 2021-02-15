@@ -1,6 +1,8 @@
 import Vue from "vue";
 import { store } from './store';
 import App from "./App.vue";
+import Zoom from "./Zoom.vue";
+import Main from "./Main.vue";
 import router from "./routers";
 import Buefy from "buefy";
 import axios from 'axios'
@@ -36,9 +38,11 @@ Vue.use(VueAxios, axios)
 Vue.use(VueSelectImage)
 Vue.use(Buefy);
 
+Vue.component("app-layout", App);
+Vue.component("zoom-layout", Zoom);
 Vue.config.productionTip = false;
 new Vue({
   store,
   router,
-  render: (h) => h(App),
+  render: (h) => h(Main),
 }).$mount("#app");

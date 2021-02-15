@@ -16,6 +16,7 @@ import ChangePassword from "./views/change-password.vue";
 import ResetPassword from "./views/reset-password.vue";
 import Profile from "./views/profile.vue";
 import Schedule from "./views/schedule.vue";
+// import Meeting from "./views/meeting"
 import axios from 'axios';
 // const API_URL = 'https://answebtechnologies.in/flooopadmin/api/';
 // const API_URL = 'http://sh009.hostgator.tempwebhost.net/~a1610nqz/flooopadmin/api/';
@@ -136,7 +137,8 @@ const router = new VueRouter({
       beforeEnter: guardMyrouteForLoggedInUser
     },
     { path: "/profile", name: "Profile", component: Profile },
-    { path: "/schedule", name: "Schedule", component: Schedule }
+    { path: "/schedule", name: "Schedule", component: Schedule },
+    { path: "/meeting", name: "Meeting", component: () => import('./views/meeting'),  meta: {layout: "zoom"} },
   ],
 
   // eslint-disable-next-line no-unused-vars
