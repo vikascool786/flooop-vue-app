@@ -61,13 +61,10 @@
               <li class="nav-item pl-3 pr-3 padding-left-right">
                 <router-link to="/#"><span>BECOME A HOST</span></router-link>
               </li>
-              <li class="nav-item pl-3 pr-3 padding-left-right" v-if="!loggedIn">
+              <li class="nav-item pl-3 pr-3 padding-left-right">
                 <router-link to="/join"><span>JOIN</span></router-link
                 ><a class="noLink"><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span></a>
                 <router-link to="/login"><span>LOGIN</span></router-link>
-              </li>
-              <li class="nav-item pl-3 pr-3 padding-left-right" v-if="loggedIn">
-                <router-link style="letter-spacing: 2px;font-size: 0.92em;font-weight: 400; border-bottom:none;" to="/my-account"><i style="font-size:15px;letter-spacing: 2px;font-size: 1em;font-weight: 400;" class="fa fa-user"></i></router-link>
               </li>
             </ul>
           </div>
@@ -546,7 +543,7 @@ a:hover .head {
 @import "./assets/css/fontawesome-all.css";
 
  .content-margin-top{
-    margin-top: 15px;
+    margin-top: 80px;
   }
 @media (max-width: 769px) {
   .navbar-nav > li.nav-item.pl-3.pr-3 {

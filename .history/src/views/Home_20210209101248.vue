@@ -48,13 +48,13 @@
         <div class="row">
           <div class="col-lg-12 col-md-12 col-12">
             <button
-              id="join" v-if="!isLoggedIn"
+              id="join"
               style="color: white;letter-spacing: 1.5px;height: fit-content;background: rgb(224, 58, 58);font-size: 1.8vw;width: 50%;font-weight: 500;border-radius: 10px;"
               class="btn btn-outline-danger" @click="actionJoinForFree()"
             >JOIN FOR FREE</button>
             </div>
         </div>
-        <br /> <br />
+        <br />
         <div class="row">
           <div class="col-md-4 col-12 live-and-upcoming-hr">
             <hr style="background-color: rgb(247 114 57); height: 0.01em;" />
