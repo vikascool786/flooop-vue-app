@@ -533,7 +533,7 @@ a:hover .head {
   font-weight: 400;
   text-decoration: none;
   cursor: pointer;
-  /* font-weight:bold; */
+  font-weight:bold;
 }
 .top-header-nav ul li a:hover {
   text-decoration: none;
@@ -569,9 +569,5 @@ a:hover .head {
   .navbar-toggler:hover, .navbar-toggler:focus{
     outline: none;
   }
-}
-.input:focus, .taginput .taginput-container.is-focusable:focus, .textarea:focus, .select select:focus, .input:active, .taginput .taginput-container.is-focusable:active, .textarea:active, .select select:active, .is-active.input, .taginput .is-active.taginput-container.is-focusable, .is-active.textarea, .select select.is-active{
-    border-color: #dbdbdb !important;
-    box-shadow: none !important;
 }
 </style>

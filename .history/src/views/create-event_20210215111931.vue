@@ -175,7 +175,7 @@
 
       <div class="field">
         <div class="row">
-          <div style="padding-top: 10px" class="col-lg-2 col-md-3 col-2">
+          <div style="padding-top: 10px" class="col-lg-2 col-md-2 col-2">
             <label
               style="text-align: left; letter-spacing: 1.5px; color: #929292"
               class="label"
@@ -289,7 +289,7 @@
               <div class="box_time">
                 <i
                   class="fas fa-caret-up arrow"
-                  v-on:click="decrementStartMinutes"
+                  v-on:click="incrementStartMinutes"
                 ></i>
                 <div>
                   <input
@@ -309,7 +309,7 @@
                 </div>
                 <i
                   class="fas fa-caret-down arrow"
-                  v-on:click="incrementStartMinutes"
+                  v-on:click="decrementStartMinutes"
                 ></i>
               </div>
               <!-- <select
@@ -386,7 +386,7 @@
               <div class="box_time">
                 <i
                   class="fas fa-caret-up arrow"
-                  v-on:click="decrementTimeZone"
+                  v-on:click="incrementTimeZone"
                 ></i>
                 <div>
                   <input
@@ -406,7 +406,7 @@
                 </div>
                 <i
                   class="fas fa-caret-down arrow"
-                  v-on:click="incrementTimeZone"
+                  v-on:click="decrementTimeZone"
                 ></i>
               </div>
               <!-- <select
@@ -727,7 +727,17 @@
 
             <button
               id="button"
-              class="btn btn-outline-danger btn-create"
+              style="
+                width: 100%;
+                letter-spacing: 1.5px;
+                font-size: 1.1em;
+                border-radius: 12px;
+                color: white;
+                border-color: #ff8354;
+                background-color: #ff8354;
+                font-weight: 500;
+              "
+              class="btn btn-outline-danger"
             >
               CREATE
               <img
@@ -879,7 +889,7 @@ export default {
     },
     incrementStartMinutes: function () {
       let i = 15;
-      if (this.eventObj.event_start_minutes <= 30) {
+      if (this.eventObj.event_start_minutes <= 45) {
         this.eventObj.event_start_minutes+=15;
       }
     },
@@ -1159,22 +1169,5 @@ export default {
 }
 .vue-select-image__item{
   width: 20%;
-}
-.btn-create{
-  width: 100%;
-  letter-spacing: 1.5px;
-  letter-spacing: 1.5px;
-  color: rgb(255, 131, 84);
-  border-color: rgb(255, 131, 84);
-  font-weight: 500;
-  background-color: white;
-  font-weight: 500;
-}
-.btn-create:focus{
-  color: rgb(255, 131, 84);
-}
-.btn-create:hover{
-    background-color: rgb(255, 131, 84) !important;
-    color: white !important;
 }
 </style>

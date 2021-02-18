@@ -591,6 +591,7 @@
       </div>
 
       <div
+        v-if="isLoggedIn"
         style="
           text-align: left;
           color: #929292;
@@ -622,7 +623,6 @@
                   font-weight: 600;
                   color: #929292;
                   letter-spacing: 1.5px;
-                  margin-top: 35px;
                 "
               >
                 Floooplife
@@ -640,15 +640,101 @@
           >
             <div>
               We're excited for your upcoming event! <br />
-              <br />
 
               Get to know other guests you'll soon meet. <br />
-              <br />
 
               Use this message board to ask questions, post comments or share
               general thoughts about the upcoming event.
             </div>
             <br />
+          </div>
+
+          <div
+            style="
+              text-align: left;
+              color: #929292;
+              letter-spacing: 1.5px;
+              height: fit-content;
+            "
+            class="col-lg-12 col-md-12 col-12"
+          >
+            <br />
+            <br />
+            <button
+              id="button"
+              style="
+                letter-spacing: 1.5px;
+                width: 100%;
+                border-radius: 15px;
+                color: #ff8354;
+                border-color: #ff8354;
+                font-weight: 500;
+                background-color: white;
+              "
+              type="button"
+              class="btn btn-outline"
+            >
+              POST MESSAGE
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        v-if="!isLoggedIn"
+        style="
+          text-align: left;
+          color: #929292;
+          letter-spacing: 1.5px;
+          height: fit-content;
+        "
+        class="col-lg-8 col-md-12 col-12"
+      >
+        <br />
+        <br />
+        <div class="row">
+          <div
+            v-for="(conversation, index) in event.event_conversations"
+            :key="index"
+          >
+            <div
+              style="
+                text-align: left;
+                color: #929292;
+                letter-spacing: 1.5px;
+                height: 190px;
+              "
+              class="col-lg-4 col-md-8 col-8"
+            >
+              <img
+                style="width: 15em; height: 150px; border-radius: 15px"
+                :src="conversation.path_img_default"
+              />
+              <div style="text-align: center">
+                <div
+                  style="
+                    font-size: large;
+                    font-weight: 600;
+                    color: #929292;
+                    letter-spacing: 1.5px;
+                  "
+                >
+                  {{ conversation.first_name }}
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                text-align: left;
+                color: #929292;
+                letter-spacing: 1.5px;
+                height: fit-content;
+              "
+              class="col-lg-8 col-md-12 col-12"
+            >
+              <div>{{ conversation.message }}</div>
+              <br />
+            </div>
           </div>
 
           <div

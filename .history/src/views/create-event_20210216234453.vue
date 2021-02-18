@@ -1170,9 +1170,6 @@ export default {
   background-color: white;
   font-weight: 500;
 }
-.btn-create:focus{
-  color: rgb(255, 131, 84);
-}
 .btn-create:hover{
     background-color: rgb(255, 131, 84) !important;
     color: white !important;

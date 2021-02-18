@@ -97,8 +97,7 @@
                     class="card-text"
                   >
                     <div style="line-height: 50px">
-                      {{ event.event_date }} @
-                      {{ getStartTime(event.event_start) }}
+                      {{ event.event_date }} @ {{ getStartTime(event.event_start) }}
                       {{ event.timezone }}
                     </div>
                     <div style="line-height: 50px">
@@ -359,7 +358,7 @@
           "
           type="button"
           class="btn btn-outline btn_hover_cancel"
-          @click="cancelConfirm(event.id, event.event_date2, event.event_start)"
+          @click="cancelConfirm(event.id,event.event_date2,event.event_start)"
         >
           Do you need to cancel?
         </button>
@@ -591,6 +590,7 @@
       </div>
 
       <div
+        v-if="isLoggedIn"
         style="
           text-align: left;
           color: #929292;
@@ -603,32 +603,47 @@
         <br />
         <div class="row">
           <div
-            style="
-              text-align: left;
-              color: #929292;
-              letter-spacing: 1.5px;
-              height: 190px;
-            "
-            class="col-lg-4 col-md-8 col-8"
           >
-            <img
-              style="width: 15em; border-radius: 15px"
-              src="http://floooplife.com/flooop/img/logo.30eeda18.png"
-            />
-            <div style="text-align: center">
-              <div
-                style="
-                  font-size: large;
-                  font-weight: 600;
-                  color: #929292;
-                  letter-spacing: 1.5px;
-                  margin-top: 35px;
-                "
-              >
-                Floooplife
+            <div
+              style="
+                text-align: left;
+                color: #929292;
+                letter-spacing: 1.5px;
+                height: 190px;
+              "
+              class="col-lg-4 col-md-8 col-8"
+            >
+              <img
+                style="width: 15em; border-radius: 15px"
+                src="http://floooplife.com/flooop/img/logo.30eeda18.png"
+              />
+              <div style="text-align: center">
+                <div
+                  style="
+                    font-size: large;
+                    font-weight: 600;
+                    color: #929292;
+                    letter-spacing: 1.5px;
+                  "
+                >
+                 Floooplife
+                </div>
               </div>
             </div>
+            <div
+              style="
+                text-align: left;
+                color: #929292;
+                letter-spacing: 1.5px;
+                height: fit-content;
+              "
+              class="col-lg-8 col-md-12 col-12"
+            >
+              <div>mesa</div>
+              <br />
+            </div>
           </div>
+
           <div
             style="
               text-align: left;
@@ -636,19 +651,85 @@
               letter-spacing: 1.5px;
               height: fit-content;
             "
-            class="col-lg-8 col-md-12 col-12"
+            class="col-lg-12 col-md-12 col-12"
           >
-            <div>
-              We're excited for your upcoming event! <br />
-              <br />
-
-              Get to know other guests you'll soon meet. <br />
-              <br />
-
-              Use this message board to ask questions, post comments or share
-              general thoughts about the upcoming event.
-            </div>
             <br />
+            <br />
+            <button
+              id="button"
+              style="
+                letter-spacing: 1.5px;
+                width: 100%;
+                border-radius: 15px;
+                color: #ff8354;
+                border-color: #ff8354;
+                font-weight: 500;
+                background-color: white;
+              "
+              type="button"
+              class="btn btn-outline"
+            >
+              POST MESSAGE
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        v-if="!isLoggedIn"
+        style="
+          text-align: left;
+          color: #929292;
+          letter-spacing: 1.5px;
+          height: fit-content;
+        "
+        class="col-lg-8 col-md-12 col-12"
+      >
+        <br />
+        <br />
+        <div class="row">
+          <div
+            v-for="(conversation, index) in event.event_conversations"
+            :key="index"
+          >
+            <div
+              style="
+                text-align: left;
+                color: #929292;
+                letter-spacing: 1.5px;
+                height: 190px;
+              "
+              class="col-lg-4 col-md-8 col-8"
+            >
+              <img
+                style="width: 15em; height: 150px; border-radius: 15px"
+                :src="conversation.path_img_default"
+              />
+              <div style="text-align: center">
+                <div
+                  style="
+                    font-size: large;
+                    font-weight: 600;
+                    color: #929292;
+                    letter-spacing: 1.5px;
+                  "
+                >
+                  {{ conversation.first_name }}
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                text-align: left;
+                color: #929292;
+                letter-spacing: 1.5px;
+                height: fit-content;
+              "
+              class="col-lg-8 col-md-12 col-12"
+            >
+              <div>{{ conversation.message }}</div>
+              <br />
+            </div>
           </div>
 
           <div
@@ -823,13 +904,14 @@ export default {
     };
   },
   methods: {
-    getStartTime: function (time) {
-      if (time) {
-        let data = time.toString();
-        var s = data.toString();
-        s = s.replace(/^0+/, "");
-        return s;
+    getStartTime:function(time){
+      if(time){
+          let data = time.toString();
+          var s = data.toString();
+          s = s.replace(/^0+/, '');
+          return s;
       }
+      
     },
     closeModal: function () {
       this.showmodal = false;
@@ -855,8 +937,7 @@ export default {
         // console.log(a.diff(b, "weeks")); // 4
         if (Math.abs(eventCountDown) <= 12) {
           this.$dialog.confirm({
-            message:
-              "This Event starts in less than 12 hours and cannot be cancelled.",
+            message: "This Event starts in less than 12 hours and cannot be cancelled.",
             confirmText: "Ok",
             cancelText: "Cancel",
           });
@@ -1187,14 +1268,14 @@ export default {
   font-weight: 500 !important;
   background: rgb(255, 131, 84) !important;
 }
-.btn_hover_cancel {
+.btn_hover_cancel{
   display: none;
 }
-.btn_hover_reg {
-  position: relative;
+.btn_hover_reg{
+  position:relative;
 }
-.btn_hover_reg:hover > .btn_hover_cancel {
+.btn_hover_reg:hover > .btn_hover_cancel{
   display: block;
-  margin-top: 5px;
+  margin-top: 5px;;
 }
 </style>

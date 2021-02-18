@@ -1160,7 +1160,7 @@ export default {
 .vue-select-image__item{
   width: 20%;
 }
-.btn-create{
+.btn-create, .btn-create:focus{
   width: 100%;
   letter-spacing: 1.5px;
   letter-spacing: 1.5px;
@@ -1169,9 +1169,6 @@ export default {
   font-weight: 500;
   background-color: white;
   font-weight: 500;
-}
-.btn-create:focus{
-  color: rgb(255, 131, 84);
 }
 .btn-create:hover{
     background-color: rgb(255, 131, 84) !important;

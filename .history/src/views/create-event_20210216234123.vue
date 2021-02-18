@@ -727,7 +727,17 @@
 
             <button
               id="button"
-              class="btn btn-outline-danger btn-create"
+              style="
+                width: 100%;
+                letter-spacing: 1.5px;
+                font-size: 1.1em;
+                border-radius: 12px;
+                color: white;
+                border-color: #ff8354;
+                background-color: #ff8354;
+                font-weight: 500;
+              "
+              class="btn btn-outline-danger"
             >
               CREATE
               <img
@@ -1159,22 +1169,5 @@ export default {
 }
 .vue-select-image__item{
   width: 20%;
-}
-.btn-create{
-  width: 100%;
-  letter-spacing: 1.5px;
-  letter-spacing: 1.5px;
-  color: rgb(255, 131, 84);
-  border-color: rgb(255, 131, 84);
-  font-weight: 500;
-  background-color: white;
-  font-weight: 500;
-}
-.btn-create:focus{
-  color: rgb(255, 131, 84);
-}
-.btn-create:hover{
-    background-color: rgb(255, 131, 84) !important;
-    color: white !important;
 }
 </style>

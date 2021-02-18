@@ -1160,7 +1160,7 @@ export default {
 .vue-select-image__item{
   width: 20%;
 }
-.btn-create{
+.btn-create, .btn-create:focus{
   width: 100%;
   letter-spacing: 1.5px;
   letter-spacing: 1.5px;

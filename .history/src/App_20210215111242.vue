@@ -570,8 +570,4 @@ a:hover .head {
     outline: none;
   }
 }
-.input:focus, .taginput .taginput-container.is-focusable:focus, .textarea:focus, .select select:focus, .input:active, .taginput .taginput-container.is-focusable:active, .textarea:active, .select select:active, .is-active.input, .taginput .is-active.taginput-container.is-focusable, .is-active.textarea, .select select.is-active{
-    border-color: #dbdbdb !important;
-    box-shadow: none !important;
-}
 </style>
