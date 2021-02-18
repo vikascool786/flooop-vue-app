@@ -213,7 +213,7 @@
                 {{ event.timezone }}
               </div>
               <div style="line-height: 35px">{{ event.event_cost_label }}</div>
-              <div style="line-height: 35px" id="inviteFriends">{{ event.event_duration }}</div>
+              <div style="line-height: 35px">{{ event.event_duration }}</div>
               <div
                 style="line-height: 35px"
                 v-if="event.event_lang_label.length > 0"
@@ -495,11 +495,11 @@
       >
         <br />
         <br />
-        <span id="whoElseYou">&nbsp;</span>
         <div style="color: #929292; letter-spacing: 1.5px">
           {{ host.message }}
         </div>
       </div>
+
       <div
         style="text-align: left"
         class="col-lg-4 col-md-8 col-8"
@@ -807,7 +807,6 @@
        <div class="col-lg-4 col-md-8 col-8">
           <p style="font-size: 16px; font-weight: 600; color: rgb(146, 146, 146); letter-spacing: 1.5px;">How to participate</p>
           <p>Here are the steps we’ve taken to help protect your privacy during virtual events, along with tips for you to protect your privacy when using Zoom.  </p>
-          <p><a @click="redirectToParticipatePage()"  class="show_more">Show more..</a></p>
       </div>
     </div>
   </div>
@@ -907,9 +906,7 @@ export default {
         }
       }
     },
-    redirectToParticipatePage(){
-      this.$router.push("/participate");
-    },
+
     getEventStatus: function () {
       var id = this.$route.params.id;
       EventService.getEvent(id).then(
@@ -1130,14 +1127,6 @@ export default {
     },
   },
   mounted() {
-    let pageScroll = localStorage.getItem("pageScroll");
-    if(pageScroll === "whoElseYou" || pageScroll === "inviteFriends"){
-      setTimeout(() => {
-        var elmnt = document.getElementById(pageScroll);
-        elmnt.scrollIntoView();
-        localStorage.setItem("pageScroll", "");
-      }, 1000);
-    }
     this.getEventStatus();
     this.firstTimeLand = localStorage.getItem("joinedStatus");
     if (this.firstTimeLand === "firstTime") {
@@ -1214,11 +1203,5 @@ export default {
 .btn_hover_reg:hover > .btn_hover_cancel {
   display: block;
   margin-top: 5px;
-}
-.show_more{
-  border-bottom: none; padding-bottom: 15px; color: #f77239 !important; cursor: pointer;
-}
-.show_more:hover{
-  border-bottom: none; padding-bottom: 15px; color: #f77239 !important; cursor: pointer;
 }
 </style>

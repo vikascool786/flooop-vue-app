@@ -15,7 +15,6 @@ import ForgotPassword from "./views/forgot-password.vue";
 import ChangePassword from "./views/change-password.vue";
 import ResetPassword from "./views/reset-password.vue";
 import Profile from "./views/profile.vue";
-import Participate from "./views/participate.vue";
 import Schedule from "./views/schedule.vue";
 import axios from 'axios';
 // const API_URL = 'https://answebtechnologies.in/flooopadmin/api/';

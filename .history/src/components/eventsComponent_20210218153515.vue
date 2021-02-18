@@ -451,7 +451,7 @@ export default {
             // Vue.$toast.success(response.data.message, {
             //   duration: 2000,
             // });
-            // this.getEvents();
+            this.getEvents();
             this.$router.push("/event-detail/" + id);
             localStorage.setItem("joinedStatus", "firstTime");
           },

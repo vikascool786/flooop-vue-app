@@ -64,7 +64,7 @@
           <p
             style="
               background: #f8bd40;
-              color: #999;
+              color: #313131;
               margin-top: 30px;
               padding-left: 10px;
             "
@@ -83,7 +83,6 @@
           <p
             class="card-text"
             style="font-size: 1em; font-weight: 500; letter-spacing: 1.5px"
-            @click="redirectToDetail(eventlist.id)"
           >
             {{
               eventlist.event_start
@@ -106,14 +105,12 @@
               margin: 0px auto;
               display: block;
             "
-            @click="redirectToDetail(eventlist.id)"
           />
         </div>
         <div class="col-sm-3 col-md-2" style="text-align: left">
           <p
             class="card-text"
             style="font-size: 1em; font-weight: 500; letter-spacing: 1.5px"
-            @click="redirectToDetail(eventlist.id)"
           >
             {{ eventlist.event_title }}
           </p>
@@ -121,16 +118,6 @@
           <p
             class="card-text"
             style="font-size: 1em; font-weight: 500; letter-spacing: 1.5px"
-            @click="redirectToDetail(eventlist.id)"
-            v-if="eventlist.event_cost == 0"
-          >
-            FREE
-          </p>
-           <p
-            class="card-text"
-            style="font-size: 1em; font-weight: 500; letter-spacing: 1.5px"
-            @click="redirectToDetail(eventlist.id)"
-            v-if="eventlist.event_cost != 0"
           >
             ${{ eventlist.event_cost }}
           </p>
@@ -146,7 +133,6 @@
               margin: 0px auto;
               display: block;
             "
-             @click="redirectToDetail(eventlist.id)"
           />
         </div>
         <div class="col-sm-3 col-md-2" style="text-align: left">
@@ -159,7 +145,6 @@
               line-height: 22px;
               margin-top: 5px;
             "
-             @click="redirectToDetail(eventlist.id)"
           >
             Hosted by<br />
             <span style="display: inline-block">
@@ -681,7 +666,6 @@ export default {
       } else return time;
     },
     redirectToDetail: function (id) {
-      console.log("dfd", id)
        if (AuthService.isLoggedIn() == false) {
         Vue.$toast.success("Please Login to Join Event", {
           duration: 2000,
@@ -792,7 +776,7 @@ export default {
                 events: groups[date],
               };
             });
-            // console.log(this.eventGroups);
+            console.log(this.eventGroups);
           }
         },
         (error) => {

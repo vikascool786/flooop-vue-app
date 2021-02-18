@@ -383,7 +383,7 @@
         >
           <button
             id="button"
-            @click="redirectToWhoAttending(event.id, 'whoElseYou')"
+            @click="redirectToDetail(event.id)"
             style="
               width: 100%;
               border-radius: 15px;
@@ -410,7 +410,7 @@
         >
           <button
             id="button"
-            @click="redirectToWhoAttending(event.id, 'inviteFriends')"
+            @click="redirectToDetail(event.id)"
             style="
               width: 100%;
               border-radius: 15px;
@@ -543,7 +543,7 @@
         >
           <button
             id="button"
-            @click="redirectToWhoAttending(event.id, 'whoElseYou')"
+            @click="redirectToDetail(event.id)"
             style="
               width: 100%;
               border-radius: 15px;
@@ -571,7 +571,7 @@
         >
           <button
             id="button"
-            @click="redirectToWhoAttending(event.id, 'inviteFriends')"
+            @click="redirectToDetail(event.id)"
             style="
               width: 100%;
               border-radius: 15px;
@@ -652,7 +652,9 @@
             </button>
         </div>
       </div>
-       <div class="col-md-12"><hr /></div>
+       <div class="row">
+      <div class="col-md-12"><hr /></div>
+    </div>
     </div>
 
     <div style="margin-top: 40px; margin-bottom: 20px" class="row">
@@ -756,7 +758,7 @@
         >
           <button
             id="button"
-            @click="redirectToWhoAttending(event.id, 'whoElseYou')"
+            @click="redirectToDetail(event.id)"
             type="button"
             class="btn btn-outline-danger"
             style="
@@ -783,7 +785,7 @@
         >
           <button
             id="button"
-            @click="redirectToWhoAttending(event.id, 'inviteFriends')"
+            @click="redirectToDetail(event.id)"
             type="button"
             class="btn btn-outline-danger"
             style="
@@ -846,7 +848,6 @@
           </button>
         </div>
       </div>
-      <div class="col-md-12"><hr /></div>
     </div>
     <b-modal :active.sync="isComponentModalActive" has-modal-card>
       <form action="" @submit="submitInvite($event)">
@@ -1015,12 +1016,6 @@ export default {
     redirectToDetail: function (id) {
       this.$router.push("/event-detail/" + id);
     },
-    redirectToWhoAttending: function (id, page) {
-      localStorage.setItem("pageScroll", page);
-      setTimeout(() => {
-        this.$router.push("/event-detail/" + id);
-      }, 1000);
-    },
     OpenAttendees: function (id) {
       EventService.getEvent(id).then(
         (response) => {
@@ -1107,7 +1102,6 @@ export default {
       EventService.getEvents(page2).then(
         (response) => {
           this.events_host = response.data.records;
-          this.events_attending = response.data.records;
         },
         (error) => {
           this.events_host = [];

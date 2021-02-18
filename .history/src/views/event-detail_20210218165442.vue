@@ -495,11 +495,11 @@
       >
         <br />
         <br />
-        <span id="whoElseYou">&nbsp;</span>
         <div style="color: #929292; letter-spacing: 1.5px">
           {{ host.message }}
         </div>
       </div>
+      <span id="whoElseYou">&nbsp;</span>
       <div
         style="text-align: left"
         class="col-lg-4 col-md-8 col-8"

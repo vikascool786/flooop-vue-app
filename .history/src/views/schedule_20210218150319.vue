@@ -122,7 +122,7 @@
             class="card-text"
             style="font-size: 1em; font-weight: 500; letter-spacing: 1.5px"
             @click="redirectToDetail(eventlist.id)"
-            v-if="eventlist.event_cost == 0"
+            v-if="eventlist.event_cost === 0"
           >
             FREE
           </p>
@@ -130,7 +130,7 @@
             class="card-text"
             style="font-size: 1em; font-weight: 500; letter-spacing: 1.5px"
             @click="redirectToDetail(eventlist.id)"
-            v-if="eventlist.event_cost != 0"
+            v-if="eventlist.event_cost !== 0"
           >
             ${{ eventlist.event_cost }}
           </p>
@@ -146,7 +146,6 @@
               margin: 0px auto;
               display: block;
             "
-             @click="redirectToDetail(eventlist.id)"
           />
         </div>
         <div class="col-sm-3 col-md-2" style="text-align: left">
@@ -159,7 +158,6 @@
               line-height: 22px;
               margin-top: 5px;
             "
-             @click="redirectToDetail(eventlist.id)"
           >
             Hosted by<br />
             <span style="display: inline-block">

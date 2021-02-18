@@ -213,7 +213,7 @@
                 {{ event.timezone }}
               </div>
               <div style="line-height: 35px">{{ event.event_cost_label }}</div>
-              <div style="line-height: 35px" id="inviteFriends">{{ event.event_duration }}</div>
+              <div style="line-height: 35px">{{ event.event_duration }}</div>
               <div
                 style="line-height: 35px"
                 v-if="event.event_lang_label.length > 0"
@@ -495,11 +495,11 @@
       >
         <br />
         <br />
-        <span id="whoElseYou">&nbsp;</span>
         <div style="color: #929292; letter-spacing: 1.5px">
           {{ host.message }}
         </div>
       </div>
+
       <div
         style="text-align: left"
         class="col-lg-4 col-md-8 col-8"
@@ -519,7 +519,7 @@
       </div>
 
       <div
-        v-if="event.display_attendees === 'yes'"
+        v-if="isLoggedIn && event.display_attendees === 'yes'"
         style="
           text-align: left;
           color: #929292;
@@ -603,19 +603,41 @@
         <br />
         <div class="row">
           <div
-            style="text-align: left; color: #929292; letter-spacing: 1.5px; height: 190px;"
-            class="col-lg-4 col-md-8 col-8">
-            <img style="width: 15em; border-radius: 15px"
-              src="http://floooplife.com/flooop/img/logo.30eeda18.png"/>
+            style="
+              text-align: left;
+              color: #929292;
+              letter-spacing: 1.5px;
+              height: 190px;
+            "
+            class="col-lg-4 col-md-8 col-8"
+          >
+            <img
+              style="width: 15em; border-radius: 15px"
+              src="http://floooplife.com/flooop/img/logo.30eeda18.png"
+            />
             <div style="text-align: center">
-              <div style="font-size: large; font-weight: 600; color: #929292; letter-spacing: 1.5px; margin-top: 35px;">
+              <div
+                style="
+                  font-size: large;
+                  font-weight: 600;
+                  color: #929292;
+                  letter-spacing: 1.5px;
+                  margin-top: 35px;
+                "
+              >
                 Floooplife
               </div>
             </div>
           </div>
           <div
-            style="text-align: left; color: #929292; letter-spacing: 1.5px; height: fit-content;"
-            class="col-lg-8 col-md-12 col-12">
+            style="
+              text-align: left;
+              color: #929292;
+              letter-spacing: 1.5px;
+              height: fit-content;
+            "
+            class="col-lg-8 col-md-12 col-12"
+          >
             <div>
               We're excited for your upcoming event! <br />
               <br />
@@ -629,30 +651,102 @@
             <br />
           </div>
 
-            <!-- comments -->
           <div
-            style="text-align: left; color: #929292; letter-spacing: 1.5px; height: 190px;"
-            class="col-lg-4 col-md-8 col-8">
-            <img style="width: 15em; border-radius: 15px"
-              src="http://floooplife.com/flooop/img/logo.30eeda18.png"/>
-            <div style="text-align: center">
-              <div style="font-size: large; font-weight: 600; color: #929292; letter-spacing: 1.5px; margin-top: 35px;">
-                Username
+            style="
+              text-align: left;
+              color: #929292;
+              letter-spacing: 1.5px;
+              height: fit-content;
+            "
+            class="col-lg-12 col-md-12 col-12"
+          >
+            <br />
+            <br />
+            <button
+              id="button"
+              style="
+                letter-spacing: 1.5px;
+                width: 100%;
+                border-radius: 15px;
+                color: #ff8354;
+                border-color: #ff8354;
+                font-weight: 500;
+                background-color: white;
+              "
+              type="button"
+              class="btn btn-outline"
+            >
+              POST MESSAGE
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          text-align: left;
+          color: #929292;
+          letter-spacing: 1.5px;
+          height: fit-content;
+        "
+        class="col-lg-8 col-md-12 col-12"
+      >
+        <br />
+        <br />
+        <div class="row">
+          <div
+            v-for="(conversation, index) in event.event_conversations"
+            :key="index"
+          >
+            <div
+              style="
+                text-align: left;
+                color: #929292;
+                letter-spacing: 1.5px;
+                height: 190px;
+              "
+              class="col-lg-4 col-md-8 col-8"
+            >
+              <img
+                style="width: 15em; height: 150px; border-radius: 15px"
+                :src="conversation.path_img_default"
+              />
+              <div style="text-align: center">
+                <div
+                  style="
+                    font-size: large;
+                    font-weight: 600;
+                    color: #929292;
+                    letter-spacing: 1.5px;
+                  "
+                >
+                  {{ conversation.first_name }}
+                </div>
               </div>
             </div>
-          </div>
-           <div
-            style="text-align: left; color: #929292; letter-spacing: 1.5px; height: fit-content;"
-            class="col-lg-8 col-md-12 col-12">
-            <div>
-              We're excited for your upcoming event!
+            <div
+              style="
+                text-align: left;
+                color: #929292;
+                letter-spacing: 1.5px;
+                height: fit-content;
+              "
+              class="col-lg-8 col-md-12 col-12"
+            >
+              <div>{{ conversation.message }}</div>
+              <br />
             </div>
-            <br />
           </div>
 
           <div
-            style="text-align: left; color: #929292; letter-spacing: 1.5px; height: fit-content;"
-            class="col-lg-12 col-md-12 col-12">
+            style="
+              text-align: left;
+              color: #929292;
+              letter-spacing: 1.5px;
+              height: fit-content;
+            "
+            class="col-lg-12 col-md-12 col-12"
+          >
             <br />
             <br />
             <button
@@ -789,25 +883,10 @@
         <br />
         <div class="row">
           <div class="col-lg-12 col-md-12 col-12">
-            <!-- {{ event.event_things_to_keep }} -->&nbsp;
+            {{ event.event_things_to_keep }}
           </div>
         </div>
         <br />
-
-      </div>
-
-      <div class="col-lg-4 col-md-8 col-8">
-          <p style="font-size: 16px; font-weight: 600; color: rgb(146, 146, 146); letter-spacing: 1.5px;">Cancellation policy</p>
-          <p>For a full refund, cancel at least 24 hours before the virtual event is scheduled to start.</p>
-      </div>
-       <div class="col-lg-4 col-md-8 col-8">
-          <p style="font-size: 16px; font-weight: 600; color: rgb(146, 146, 146); letter-spacing: 1.5px;">Technical Requirements</p>
-          <p>You’ll need an internet connection with audio and video to participate. A link and details on how to join will be included in your booking confirmation email.</p>
-      </div>
-       <div class="col-lg-4 col-md-8 col-8">
-          <p style="font-size: 16px; font-weight: 600; color: rgb(146, 146, 146); letter-spacing: 1.5px;">How to participate</p>
-          <p>Here are the steps we’ve taken to help protect your privacy during virtual events, along with tips for you to protect your privacy when using Zoom.  </p>
-          <p><a @click="redirectToParticipatePage()"  class="show_more">Show more..</a></p>
       </div>
     </div>
   </div>
@@ -907,9 +986,7 @@ export default {
         }
       }
     },
-    redirectToParticipatePage(){
-      this.$router.push("/participate");
-    },
+
     getEventStatus: function () {
       var id = this.$route.params.id;
       EventService.getEvent(id).then(
@@ -1130,14 +1207,6 @@ export default {
     },
   },
   mounted() {
-    let pageScroll = localStorage.getItem("pageScroll");
-    if(pageScroll === "whoElseYou" || pageScroll === "inviteFriends"){
-      setTimeout(() => {
-        var elmnt = document.getElementById(pageScroll);
-        elmnt.scrollIntoView();
-        localStorage.setItem("pageScroll", "");
-      }, 1000);
-    }
     this.getEventStatus();
     this.firstTimeLand = localStorage.getItem("joinedStatus");
     if (this.firstTimeLand === "firstTime") {
@@ -1214,11 +1283,5 @@ export default {
 .btn_hover_reg:hover > .btn_hover_cancel {
   display: block;
   margin-top: 5px;
-}
-.show_more{
-  border-bottom: none; padding-bottom: 15px; color: #f77239 !important; cursor: pointer;
-}
-.show_more:hover{
-  border-bottom: none; padding-bottom: 15px; color: #f77239 !important; cursor: pointer;
 }
 </style>

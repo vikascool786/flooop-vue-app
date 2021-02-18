@@ -448,10 +448,10 @@ export default {
         EventService.joinEvent(id).then(
           (response) => {
             this.event = response.data;
-            // Vue.$toast.success(response.data.message, {
-            //   duration: 2000,
-            // });
-            // this.getEvents();
+            Vue.$toast.success(response.data.message, {
+              duration: 2000,
+            });
+            this.getEvents();
             this.$router.push("/event-detail/" + id);
             localStorage.setItem("joinedStatus", "firstTime");
           },

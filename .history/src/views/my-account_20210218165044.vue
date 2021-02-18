@@ -410,7 +410,7 @@
         >
           <button
             id="button"
-            @click="redirectToWhoAttending(event.id, 'inviteFriends')"
+                @click="redirectToWhoAttending(event.id, 'inviteFriends')"
             style="
               width: 100%;
               border-radius: 15px;
@@ -571,7 +571,7 @@
         >
           <button
             id="button"
-            @click="redirectToWhoAttending(event.id, 'inviteFriends')"
+            @click="redirectToDetail(event.id)"
             style="
               width: 100%;
               border-radius: 15px;
@@ -783,7 +783,7 @@
         >
           <button
             id="button"
-            @click="redirectToWhoAttending(event.id, 'inviteFriends')"
+            @click="redirectToDetail(event.id)"
             type="button"
             class="btn btn-outline-danger"
             style="

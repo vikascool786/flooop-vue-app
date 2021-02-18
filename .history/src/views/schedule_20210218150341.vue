@@ -146,7 +146,6 @@
               margin: 0px auto;
               display: block;
             "
-             @click="redirectToDetail(eventlist.id)"
           />
         </div>
         <div class="col-sm-3 col-md-2" style="text-align: left">
@@ -159,7 +158,6 @@
               line-height: 22px;
               margin-top: 5px;
             "
-             @click="redirectToDetail(eventlist.id)"
           >
             Hosted by<br />
             <span style="display: inline-block">

@@ -213,7 +213,7 @@
                 {{ event.timezone }}
               </div>
               <div style="line-height: 35px">{{ event.event_cost_label }}</div>
-              <div style="line-height: 35px" id="inviteFriends">{{ event.event_duration }}</div>
+              <div style="line-height: 35px">{{ event.event_duration }}</div>
               <div
                 style="line-height: 35px"
                 v-if="event.event_lang_label.length > 0"
@@ -495,11 +495,11 @@
       >
         <br />
         <br />
-        <span id="whoElseYou">&nbsp;</span>
         <div style="color: #929292; letter-spacing: 1.5px">
           {{ host.message }}
         </div>
       </div>
+      <span id="whoElseYou">&nbsp;</span>
       <div
         style="text-align: left"
         class="col-lg-4 col-md-8 col-8"
@@ -1130,12 +1130,11 @@ export default {
     },
   },
   mounted() {
-    let pageScroll = localStorage.getItem("pageScroll");
-    if(pageScroll === "whoElseYou" || pageScroll === "inviteFriends"){
+    let pageScroll = localStorage.getItem(pageScroll);
+    if(pageScroll === "whoElseYou"){
       setTimeout(() => {
         var elmnt = document.getElementById(pageScroll);
         elmnt.scrollIntoView();
-        localStorage.setItem("pageScroll", "");
       }, 1000);
     }
     this.getEventStatus();

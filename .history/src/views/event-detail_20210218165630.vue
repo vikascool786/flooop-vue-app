@@ -495,7 +495,7 @@
       >
         <br />
         <br />
-        <span id="whoElseYou">&nbsp;</span>
+      <span id="whoElseYou">&nbsp;</span>
         <div style="color: #929292; letter-spacing: 1.5px">
           {{ host.message }}
         </div>

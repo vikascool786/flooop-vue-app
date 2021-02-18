@@ -124,7 +124,7 @@
             @click="redirectToDetail(eventlist.id)"
             v-if="eventlist.event_cost == 0"
           >
-            FREE
+            Free
           </p>
            <p
             class="card-text"

@@ -8,10 +8,12 @@
           :key="index"
           @click="getEvents('Category', category.id)"
         >
-          <img
-            :src="category.src"
-            style="width: 100%; object-fit: cover"
-          /><br />
+          <div>
+            <img
+              :src="category.src"
+              style="width: 100%; object-fit: cover"/>
+          </div>
+          <br />
           <span class="category-title">{{ category.cat_title }}</span>
         </div>
       </div>
@@ -83,7 +85,6 @@
           <p
             class="card-text"
             style="font-size: 1em; font-weight: 500; letter-spacing: 1.5px"
-            @click="redirectToDetail(eventlist.id)"
           >
             {{
               eventlist.event_start
@@ -106,14 +107,12 @@
               margin: 0px auto;
               display: block;
             "
-            @click="redirectToDetail(eventlist.id)"
           />
         </div>
         <div class="col-sm-3 col-md-2" style="text-align: left">
           <p
             class="card-text"
             style="font-size: 1em; font-weight: 500; letter-spacing: 1.5px"
-            @click="redirectToDetail(eventlist.id)"
           >
             {{ eventlist.event_title }}
           </p>
@@ -121,16 +120,6 @@
           <p
             class="card-text"
             style="font-size: 1em; font-weight: 500; letter-spacing: 1.5px"
-            @click="redirectToDetail(eventlist.id)"
-            v-if="eventlist.event_cost == 0"
-          >
-            FREE
-          </p>
-           <p
-            class="card-text"
-            style="font-size: 1em; font-weight: 500; letter-spacing: 1.5px"
-            @click="redirectToDetail(eventlist.id)"
-            v-if="eventlist.event_cost != 0"
           >
             ${{ eventlist.event_cost }}
           </p>
@@ -146,7 +135,6 @@
               margin: 0px auto;
               display: block;
             "
-             @click="redirectToDetail(eventlist.id)"
           />
         </div>
         <div class="col-sm-3 col-md-2" style="text-align: left">
@@ -159,7 +147,6 @@
               line-height: 22px;
               margin-top: 5px;
             "
-             @click="redirectToDetail(eventlist.id)"
           >
             Hosted by<br />
             <span style="display: inline-block">
@@ -681,7 +668,6 @@ export default {
       } else return time;
     },
     redirectToDetail: function (id) {
-      console.log("dfd", id)
        if (AuthService.isLoggedIn() == false) {
         Vue.$toast.success("Please Login to Join Event", {
           duration: 2000,
