@@ -175,7 +175,7 @@
 
       <div class="field">
         <div class="row">
-          <div style="padding-top: 10px" class="col-lg-2 col-md-2 col-2">
+          <div style="padding-top: 10px" class="col-lg-2 col-md-3 col-2">
             <label
               style="text-align: left; letter-spacing: 1.5px; color: #929292"
               class="label"
@@ -289,7 +289,7 @@
               <div class="box_time">
                 <i
                   class="fas fa-caret-up arrow"
-                  v-on:click="incrementStartMinutes"
+                  v-on:click="decrementStartMinutes"
                 ></i>
                 <div>
                   <input
@@ -309,7 +309,7 @@
                 </div>
                 <i
                   class="fas fa-caret-down arrow"
-                  v-on:click="decrementStartMinutes"
+                  v-on:click="incrementStartMinutes"
                 ></i>
               </div>
               <!-- <select
@@ -691,17 +691,7 @@
 
             <button
               id="button"
-              style="
-                width: 100%;
-                letter-spacing: 1.5px;
-                font-size: 1.1em;
-                border-radius: 12px;
-                color: white;
-                border-color: #ff8354;
-                background-color: #ff8354;
-                font-weight: 500;
-              "
-              class="btn btn-outline-danger"
+              class="btn btn-outline-danger btn-create"
             >
               CREATE
               <img
@@ -853,7 +843,7 @@ export default {
     },
     incrementStartMinutes: function () {
       let i = 15;
-      if (this.eventObj.event_start_minutes <= 45) {
+      if (this.eventObj.event_start_minutes <= 30) {
         this.eventObj.event_start_minutes+=15;
       }
     },
@@ -1067,8 +1057,11 @@ export default {
   border: none !important;
   box-shadow: none !important;
 }
+.vue-select-image__thumbnail:hover {
+  background: #134b86 !important;
+}
 .vue-select-image__thumbnail--selected {
-  background: #0077a2 !important;
+  background: #134b86 !important;
   color: white;
   text-align: center;
   border-radius: 20px !important;
@@ -1104,6 +1097,7 @@ export default {
   text-align: center;
   font-size: 20px;
   color:#929292;
+  margin-top: -7px;
 }
 .arrow {
   font-size: 25px;
@@ -1133,4 +1127,21 @@ export default {
   .box_time div{
     line-height: 1.3rem;
   }
+.btn-create{
+  width: 100%;
+  letter-spacing: 1.5px;
+  letter-spacing: 1.5px;
+  color: rgb(255, 131, 84);
+  border-color: rgb(255, 131, 84);
+  font-weight: 500;
+  background-color: white;
+  font-weight: 500;
+}
+.btn-create:focus{
+  color: rgb(255, 131, 84);
+}
+.btn-create:hover{
+    background-color: rgb(255, 131, 84) !important;
+    color: white !important;
+}
 </style>

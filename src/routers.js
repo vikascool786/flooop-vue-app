@@ -15,6 +15,7 @@ import ForgotPassword from "./views/forgot-password.vue";
 import ChangePassword from "./views/change-password.vue";
 import ResetPassword from "./views/reset-password.vue";
 import Profile from "./views/profile.vue";
+import Participate from "./views/participate.vue";
 import Schedule from "./views/schedule.vue";
 // import Meeting from "./views/meeting"
 import axios from 'axios';
@@ -137,8 +138,9 @@ const router = new VueRouter({
       beforeEnter: guardMyrouteForLoggedInUser
     },
     { path: "/profile", name: "Profile", component: Profile },
-    { path: "/schedule", name: "Schedule", component: Schedule },
     { path: "/meeting", name: "Meeting", component: () => import('./views/meeting'),  meta: {layout: "zoom"} },
+    { path: "/participate", name: "Participate", component: Participate },
+    { path: "/schedule", name: "Schedule", component: Schedule }
   ],
 
   // eslint-disable-next-line no-unused-vars

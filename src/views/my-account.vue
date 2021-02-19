@@ -384,7 +384,7 @@
         >
           <button
             id="button"
-            @click="redirectToDetail(event.id)"
+            @click="redirectToWhoAttending(event.id, 'whoElseYou')"
             style="
               width: 100%;
               border-radius: 15px;
@@ -411,7 +411,7 @@
         >
           <button
             id="button"
-            @click="redirectToDetail(event.id)"
+            @click="redirectToWhoAttending(event.id, 'inviteFriends')"
             style="
               width: 100%;
               border-radius: 15px;
@@ -547,7 +547,7 @@
         >
           <button
             id="button"
-            @click="redirectToDetail(event.id)"
+            @click="redirectToWhoAttending(event.id, 'whoElseYou')"
             style="
               width: 100%;
               border-radius: 15px;
@@ -575,7 +575,7 @@
         >
           <button
             id="button"
-            @click="redirectToDetail(event.id)"
+            @click="redirectToWhoAttending(event.id, 'inviteFriends')"
             style="
               width: 100%;
               border-radius: 15px;
@@ -628,15 +628,36 @@
           class=""
         >
           <button
+            v-if=" event.flag_joined == null || event.flag_joined == '0' "
             id="button2"
             type="button"
             @click="startAttendeeEvent(event)"
             class="btn btn-outline-danger join_button"
+             @click.stop="joinEvent(event.id)"
           >
             JOIN {{ event.event_countdown_label2 }}
           </button>
+          <button
+              v-if="event.flag_joined == '1'"
+              id="button"
+              type="button"
+              class="btn btn-outline-danger"
+              style="
+                width: 175px;
+                border-radius: 15px;
+                color: rgb(255, 131, 84) !important;
+                border-color: rgb(255, 131, 84);
+                font-weight: 500;
+                font-size: 14px;
+                background: #fff !important;
+              "
+              disabled
+            >
+              YOU ARE REGISTERED
+            </button>
         </div>
       </div>
+       <div class="col-md-12"><hr /></div>
     </div>
 
     <div style="margin-top: 40px; margin-bottom: 20px" class="row">
@@ -742,7 +763,7 @@
         >
           <button
             id="button"
-            @click="redirectToDetail(event.id)"
+            @click="redirectToWhoAttending(event.id, 'whoElseYou')"
             type="button"
             class="btn btn-outline-danger"
             style="
@@ -769,7 +790,7 @@
         >
           <button
             id="button"
-            @click="redirectToDetail(event.id)"
+            @click="redirectToWhoAttending(event.id, 'inviteFriends')"
             type="button"
             class="btn btn-outline-danger"
             style="
@@ -833,6 +854,7 @@
           </button>
         </div>
       </div>
+      <div class="col-md-12"><hr /></div>
     </div>
 
     <div class="row mt-10 zoom-setting">
@@ -1064,6 +1086,12 @@ export default {
     redirectToDetail: function (id) {
       this.$router.push("/event-detail/" + id);
     },
+    redirectToWhoAttending: function (id, page) {
+      localStorage.setItem("pageScroll", page);
+      setTimeout(() => {
+        this.$router.push("/event-detail/" + id);
+      }, 1000);
+    },
     OpenAttendees: function (id) {
       EventService.getEvent(id).then(
         (response) => {
@@ -1177,6 +1205,7 @@ export default {
       EventService.getEvents(page2).then(
         (response) => {
           this.events_host = response.data.records;
+          this.events_attending = response.data.records;
         },
         (error) => {
           this.events_host = [];
@@ -1191,6 +1220,32 @@ export default {
     },
     openEventDetail(id) {
       this.$router.push("/event-detail/" + id);
+    },
+     joinEvent: function (id) {
+      if (AuthService.isLoggedIn() == false) {
+        Vue.$toast.success("Please Login to Join Event", {
+          duration: 2000,
+        });
+      } else {
+        EventService.joinEvent(id).then(
+          (response) => {
+            this.events = response.data;
+            Vue.$toast.success(response.data.message, {
+              duration: 2000,
+            });
+            this.getEvents();
+            localStorage.setItem("joinedStatus", "firstTime");
+          },
+          (error) => {
+            this.content =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+          }
+        );
+      }
     },
   },
   created() {
