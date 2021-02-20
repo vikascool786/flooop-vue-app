@@ -21,7 +21,7 @@ import Schedule from "./views/schedule.vue";
 import axios from 'axios';
 // const API_URL = 'https://answebtechnologies.in/flooopadmin/api/';
 // const API_URL = 'http://sh009.hostgator.tempwebhost.net/~a1610nqz/flooopadmin/api/';
-const API_URL = 'http://floooplife.com/flooopadmin/api/';
+const API_URL = 'https://floooplife.com/flooopadmin/api/';
 // const API_URL = 'http://flooopadmin.local/api/';
 
 Vue.use(VueRouter);
