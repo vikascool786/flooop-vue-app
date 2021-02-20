@@ -628,21 +628,11 @@
           class=""
         >
           <button
-            v-if=" event.flag_joined == null || event.flag_joined == '0' "
-            id="button2"
-            type="button"
-            @click="startAttendeeEvent(event)"
-            class="btn btn-outline-danger join_button"
-             @click.stop="joinEvent(event.id)"
-          >
-            JOIN {{ event.event_countdown_label2 }}
-          </button>
-          <button
-              v-if="event.flag_joined == '1'"
-              id="button"
-              type="button"
-              class="btn btn-outline-danger"
-              style="
+                  v-if="event.flag_joined == '1'"
+                  id="button"
+                  type="button"
+                  class="btn btn-outline-danger"
+                  style="
                 width: 175px;
                 border-radius: 15px;
                 color: rgb(255, 131, 84) !important;
@@ -651,10 +641,21 @@
                 font-size: 14px;
                 background: #fff !important;
               "
-              disabled
-            >
-              YOU ARE REGISTERED
-            </button>
+                  disabled
+          >
+            YOU ARE REGISTERED
+          </button>
+          <button
+            v-if="event.flag_joined == '1'"
+            id="button2"
+            type="button"
+            @click="startAttendeeEvent(event)"
+            class="btn btn-outline-danger join_button"
+             @click.stop="joinEvent(event.id)"
+          >
+            JOIN {{ event.event_countdown_label2 }}
+          </button>
+
         </div>
       </div>
        <div class="col-md-12"><hr /></div>

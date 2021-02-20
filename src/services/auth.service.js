@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Vue from "vue";
 // const API_URL = 'https://answebtechnologies.in/flooopadmin/api/';
 // const API_URL = 'http://sh009.hostgator.tempwebhost.net/~a1610nqz/flooopadmin/api/';
-const API_URL = 'http://floooplife.com/flooopadmin/api/';
+const API_URL = 'https://floooplife.com/flooopadmin/api/';
 // const API_URL = 'http://flooopadmin.local/api/';
 
 class AuthService {
